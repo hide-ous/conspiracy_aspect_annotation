@@ -57,6 +57,8 @@ export default function TextContainer({
     }, 200);
   }, [text, highlights, setLines]);
 
+  console.log(highlights);
+
   const createHighlight = (index) => {
     const getIndex = (range, isEnd) => {
       const element = isEnd
@@ -79,10 +81,16 @@ export default function TextContainer({
     if (selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
 
+      console.log(range);
+
       const [startIndex, isStartSpace] = getIndex(range, false);
-      // const [endIndex, isEndSpace] = getIndex(range, true);
-      const endIndex = index;
-      const isEndSpace = false;
+      let [endIndex, isEndSpace] = getIndex(range, true);
+
+      if (!endIndex) {
+        endIndex = index;
+      }
+      /* const endIndex = index;
+      const isEndSpace = false; */
 
       if (isStartSpace && isEndSpace) {
         return;
