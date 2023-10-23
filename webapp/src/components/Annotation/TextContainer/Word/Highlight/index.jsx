@@ -19,6 +19,7 @@ export default function Highlight({
         width: '100%',
         height: 3,
         backgroundColor: colors[color],
+        userSelect: 'none',
       }}
     />
   );

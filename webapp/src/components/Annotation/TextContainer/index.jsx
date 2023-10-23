@@ -57,7 +57,7 @@ export default function TextContainer({
     }, 200);
   }, [text, highlights, setLines]);
 
-  const createHighlight = () => {
+  const createHighlight = (index) => {
     const getIndex = (range, isEnd) => {
       const element = isEnd
         ? range.endContainer.parentElement
@@ -80,7 +80,9 @@ export default function TextContainer({
       const range = selection.getRangeAt(0);
 
       const [startIndex, isStartSpace] = getIndex(range, false);
-      const [endIndex, isEndSpace] = getIndex(range, true);
+      // const [endIndex, isEndSpace] = getIndex(range, true);
+      const endIndex = index;
+      const isEndSpace = false;
 
       if (isStartSpace && isEndSpace) {
         return;
@@ -123,9 +125,10 @@ export default function TextContainer({
         overflowX: 'hidden',
       }}
     >
-      <Typography level="body-lg" onMouseUp={createHighlight} ref={textRef}>
+      <Typography level="body-lg" ref={textRef}>
         {splittedText.map((word, index) => (
           <Word
+            createHighlight={createHighlight}
             lines={lines}
             setHighlights={setHighlights}
             word={word}

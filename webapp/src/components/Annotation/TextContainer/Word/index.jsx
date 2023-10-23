@@ -126,6 +126,7 @@ export default function Word({
   lines,
   currentHighlightId,
   setCurrentHighlightId,
+  createHighlight,
 }) {
   const [highlightCount, setHighlightCount] = useState(0);
   const [isInsideCurrentHighlight, setIsInsideCurrentHighlight] =
@@ -207,6 +208,9 @@ export default function Word({
         data-index={index}
         style={spanStyle}
         className={`word ${isInsideCurrentHighlight ? 'highlighted' : ''}`}
+        onMouseUp={() => {
+          createHighlight(index);
+        }}
       >
         {word}
         {reversedHighlights.map((highlight, i) => {
