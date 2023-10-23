@@ -1,0 +1,1 @@
+[2023-10-23 09:29:42,471][root][WARNING] - Mephisto supports rich run-time metrics visualization through Prometheus and Grafana. If you'd like to use this feature, use `mephisto metrics install` to install.(Current install dir is '/mephisto/mephisto/scripts/metrics')'
