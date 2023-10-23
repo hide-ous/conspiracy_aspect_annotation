@@ -13,26 +13,34 @@ const aspects = [
     title: 'Actor',
     color: 'primary',
     numButton: 1,
+    description:
+      'Who is allegedly responsible for a malicious action, or agenda?',
   },
   {
     title: 'Action',
     color: 'success',
     numButton: 2,
+    description: 'What is the actor doing to cause negative outcomes?',
   },
   {
     title: 'Pattern',
     color: 'neutral',
     numButton: 3,
+    description:
+      'Which non-intuitive/surprising aspects support the existence of the conspiracy?',
   },
   {
     title: 'Threat',
     color: 'danger',
     numButton: 4,
+    description:
+      'What are the negative outcomes, affecting individuals or groups of people?',
   },
   {
     title: 'Secrecy',
     color: 'warning',
     numButton: 5,
+    description: 'Why does the mainstream not recognize the conspiracy yet?',
   },
 ];
 

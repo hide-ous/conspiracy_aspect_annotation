@@ -3,6 +3,7 @@ import React from 'react';
 import Typography from '@mui/joy/Typography';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Tooltip from '@mui/joy/Tooltip';
 
 export default function AspectButtonsLst({
   aspects,
@@ -24,28 +25,36 @@ export default function AspectButtonsLst({
       color="primary"
     >
       {aspects.map((aspect) => (
-        <Button
+        <Tooltip
           key={aspect.title}
+          title={aspect.description}
+          arrow
+          variant="solid"
           color={aspect.color}
-          onClick={() => setCurrentAspect(aspect)}
-          size="lg"
-          sx={{
-            textTransform: 'uppercase',
-            outline:
-              currentAspect.title === aspect.title ? '3px solid #F44336' : '',
-          }}
+          placement="top"
         >
-          {aspect.title}
-          <Typography
-            level="body-sm"
-            color="white"
+          <Button
+            color={aspect.color}
+            onClick={() => setCurrentAspect(aspect)}
+            size="lg"
             sx={{
-              marginLeft: 1,
+              textTransform: 'uppercase',
+              outline:
+                currentAspect.title === aspect.title ? '3px solid #F44336' : '',
             }}
           >
-            <sub>{aspect.numButton}</sub>
-          </Typography>
-        </Button>
+            {aspect.title}
+            <Typography
+              level="body-sm"
+              color="white"
+              sx={{
+                marginLeft: 1,
+              }}
+            >
+              <sub>{aspect.numButton}</sub>
+            </Typography>
+          </Button>
+        </Tooltip>
       ))}
     </Box>
   );
