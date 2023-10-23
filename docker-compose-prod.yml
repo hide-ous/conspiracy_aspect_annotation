@@ -5,8 +5,8 @@ services:
     container_name: crowdwork
     build: ./
     ports:
-      - '3051:3051'
+      - '3052:3000'
     volumes:
       - ./:/app
     working_dir: /app
-    command: 'python run_task.py mephisto.architect.port=3051'
+    command: 'python run_task.py'
