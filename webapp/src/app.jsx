@@ -7,9 +7,14 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { useMephistoTask, ErrorBoundary } from 'mephisto-task';
+import {
+  createTheme,
+  ThemeProvider,
+  StyledEngineProvider,
+} from '@mui/material';
 
 import {
   BaseFrontend,
@@ -65,4 +70,14 @@ function MainApp() {
   );
 }
 
-ReactDOM.render(<MainApp />, document.getElementById('app'));
+// ReactDOM.render(<MainApp />, document.getElementById('app'));
+
+const theme = createTheme();
+
+ReactDOM.createRoot(document.querySelector('#app')).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <MainApp />
+    </ThemeProvider>
+  </React.StrictMode>
+);
