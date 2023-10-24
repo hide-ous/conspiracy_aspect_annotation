@@ -37,18 +37,25 @@ export default function Controls({ setHighlights, highlights }) {
         </FormLabel>
         <RadioGroup orientation="horizontal">
           <Radio
-            checked={isConspiracy === true}
-            onChange={() => setIsConspiracy(true)}
+            checked={isConspiracy === 'Yes'}
+            onChange={() => setIsConspiracy('Yes')}
             name="radio-buttons"
             label="Yes"
             slotProps={{ input: { 'aria-label': 'Yes' } }}
           />
           <Radio
-            checked={isConspiracy === false}
-            onChange={() => setIsConspiracy(false)}
+            checked={isConspiracy === 'No'}
+            onChange={() => setIsConspiracy('No')}
             name="radio-buttons"
             label="No"
             slotProps={{ input: { 'aria-label': 'No' } }}
+          />
+          <Radio
+            checked={isConspiracy === "Can't tell"}
+            onChange={() => setIsConspiracy("Can't tell")}
+            name="radio-buttons"
+            label="Can't tell"
+            slotProps={{ input: { 'aria-label': "Can't tell" } }}
           />
         </RadioGroup>
         {isInvalid && isConspiracy === null && (
@@ -62,6 +69,7 @@ export default function Controls({ setHighlights, highlights }) {
           onClick={() => {
             setHighlights([]);
             setIsConspiracy(null);
+            setIsInvalid(false);
           }}
           color="neutral"
           variant="soft"
@@ -91,6 +99,7 @@ export default function Controls({ setHighlights, highlights }) {
             );
             setHighlights([]);
             setIsConspiracy(null);
+            setIsInvalid(false);
           }}
           color="success"
         >
@@ -100,6 +109,7 @@ export default function Controls({ setHighlights, highlights }) {
           onClick={() => {
             setHighlights([]);
             setIsConspiracy(null);
+            setIsInvalid(false);
             alert('Skipped');
           }}
           color="danger"

@@ -5,6 +5,7 @@ import Box from '@mui/joy/Box';
 
 import AspectButtonsLst from './AspectButtonsList/index.jsx';
 import TextContainer from './TextContainer/index.jsx';
+import HelpModal from '../../modals/HelpModal/index.jsx';
 
 export default function Annotation({
   aspects,
@@ -15,6 +16,7 @@ export default function Annotation({
   setHighlights,
 }) {
   const [currentHighlightId, setCurrentHighlightId] = useState(null);
+  const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
 
   return (
     <Box
@@ -27,6 +29,7 @@ export default function Annotation({
           aspects={aspects}
           currentAspect={currentAspect}
           setCurrentAspect={setCurrentAspect}
+          setIsHelpModalVisible={setIsHelpModalVisible}
         />
         <TextContainer
           currentAspect={currentAspect}
@@ -37,6 +40,10 @@ export default function Annotation({
           setCurrentHighlightId={setCurrentHighlightId}
         />
       </Card>
+      <HelpModal
+        isOpen={isHelpModalVisible}
+        setIsOpen={setIsHelpModalVisible}
+      />
     </Box>
   );
 }
