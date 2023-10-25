@@ -78,6 +78,17 @@ export default function Controls({ setHighlights, highlights }) {
         </Button>
         <Button
           onClick={() => {
+            setHighlights([]);
+            setIsConspiracy(null);
+            setIsInvalid(false);
+            alert('Skipped');
+          }}
+          color="danger"
+        >
+          Skip
+        </Button>
+        <Button
+          onClick={() => {
             if (isConspiracy === null) {
               setIsInvalid(true);
               return;
@@ -104,17 +115,6 @@ export default function Controls({ setHighlights, highlights }) {
           color="success"
         >
           Submit
-        </Button>
-        <Button
-          onClick={() => {
-            setHighlights([]);
-            setIsConspiracy(null);
-            setIsInvalid(false);
-            alert('Skipped');
-          }}
-          color="danger"
-        >
-          Skip
         </Button>
       </Box>
     </Box>
