@@ -22,7 +22,7 @@ export default function HelpModal({ isOpen, setIsOpen }) {
             borderRadius: 'md',
             p: 3,
             boxShadow: 'lg',
-            overflow: 'scroll',
+            overflow: 'auto',
           }}
         >
           <ModalClose variant="plain" sx={{ m: 1 }} />
