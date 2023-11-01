@@ -34,20 +34,6 @@ const generateTasks = (onboardingData) => {
       exampleHeight: 194,
       resultHeight: 330,
       expectedHighlights: createExpectedHighlights('Actor', onboardingData),
-      /*  expectedHighlights: [
-        {
-          id: 1,
-          start: 29,
-          end: 37,
-          aspect: aspects[0],
-        },
-        {
-          id: 2,
-          start: 20,
-          end: 22,
-          aspect: aspects[0],
-        },
-      ], */
     },
     {
       aspectTitle: 'Action',
@@ -57,20 +43,6 @@ const generateTasks = (onboardingData) => {
       exampleHeight: 113,
       resultHeight: 330,
       expectedHighlights: createExpectedHighlights('Action', onboardingData),
-      /*  expectedHighlights: [
-        {
-          id: 3,
-          start: 25,
-          end: 25,
-          aspect: aspects[1],
-        },
-        {
-          id: 4,
-          start: 38,
-          end: 38,
-          aspect: aspects[1],
-        },
-      ], */
     },
     {
       aspectTitle: 'Pattern',
@@ -80,14 +52,6 @@ const generateTasks = (onboardingData) => {
       exampleHeight: 222,
       resultHeight: 302,
       expectedHighlights: createExpectedHighlights('Pattern', onboardingData),
-      /* expectedHighlights: [
-        {
-          id: 5,
-          start: 72,
-          end: 79,
-          aspect: aspects[2],
-        },
-      ], */
     },
     {
       aspectTitle: 'Threat',
@@ -97,14 +61,6 @@ const generateTasks = (onboardingData) => {
       exampleHeight: 249,
       resultHeight: 302,
       expectedHighlights: createExpectedHighlights('Threat', onboardingData),
-      /* expectedHighlights: [
-        {
-          id: 7,
-          start: 70,
-          end: 71,
-          aspect: aspects[3],
-        },
-      ], */
     },
     {
       aspectTitle: 'Secrecy',
@@ -114,20 +70,6 @@ const generateTasks = (onboardingData) => {
       exampleHeight: 195,
       resultHeight: 330,
       expectedHighlights: createExpectedHighlights('Secrecy', onboardingData),
-      /* expectedHighlights: [
-        {
-          id: 9,
-          start: 29,
-          end: 37,
-          aspect: aspects[0],
-        },
-        {
-          id: 10,
-          start: 20,
-          end: 22,
-          aspect: aspects[0],
-        },
-      ], */
     },
   ];
 };
@@ -153,7 +95,7 @@ export default function TestTask({
       previousHighlights.push(...tasks[i].expectedHighlights);
     }
 
-    return previousHighlights;
+    return previousHighlights.map((hl) => ({ ...hl, readonly: true }));
   };
 
   const switchToNextTask = () => {

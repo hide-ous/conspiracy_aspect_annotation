@@ -10,6 +10,7 @@ export default function HighlightStart({
   id,
   setCurrentHighlightId,
   colors,
+  readonly,
 }) {
   return (
     <>
@@ -34,7 +35,17 @@ export default function HighlightStart({
         size="sm"
         variant="solid"
         color={currentAspect.color}
-        startDecorator={<ChipDelete onDelete={onDelete} />}
+        startDecorator={
+          <ChipDelete
+            onDelete={() => {
+              if (readonly) {
+                return;
+              }
+
+              onDelete();
+            }}
+          />
+        }
       >
         {currentAspect.title}
       </Chip>

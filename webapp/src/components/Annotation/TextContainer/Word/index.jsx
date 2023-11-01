@@ -234,6 +234,7 @@ export default function Word({
 
             return (
               <HighlightStart
+                readonly={highlight.readonly}
                 prevHighlightCount={prevHighlightCount}
                 key={highlight.id}
                 id={highlight.id}
