@@ -1,29 +1,12 @@
-/*
- * Copyright (c) 2017-present, Facebook, Inc.
- * All rights reserved.
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { useMephistoTask, ErrorBoundary } from 'mephisto-task';
-import {
-  createTheme,
-  ThemeProvider,
-  StyledEngineProvider,
-} from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material';
 
-import {
-  BaseFrontend,
-  OnboardingComponent,
-  LoadingScreen,
-} from './components/core_components.jsx';
+import { LoadingScreen } from './components/core_components.jsx';
 import AnnotationPage from './components/AnnotationPage/index.jsx';
-
-/* ================= Application Components ================= */
+import OnboardingPage from './components/OnboardingPage/index.jsx';
 
 function MainApp() {
   const {
@@ -41,7 +24,7 @@ function MainApp() {
     return (
       <section className="hero is-medium is-danger">
         <div class="hero-body">
-          <h2 className="title is-3">{blockedExplanation}</h2>{' '}
+          <h2 className="title is-3">{blockedExplanation}</h2>
         </div>
       </section>
     );
@@ -53,24 +36,28 @@ function MainApp() {
     return <LoadingScreen />;
   }
   if (isOnboarding) {
-    return <OnboardingComponent onSubmit={handleSubmit} />;
+    return (
+      <OnboardingPage
+        initialTaskData={initialTaskData}
+        onSubmit={handleSubmit}
+      />
+    );
   }
 
   return (
     <div>
       <ErrorBoundary handleError={handleFatalError}>
-        <BaseFrontend
+        {/* <BaseFrontend
           taskData={initialTaskData}
           onSubmit={handleSubmit}
           isOnboarding={isOnboarding}
           onError={handleFatalError}
-        />
+        /> */}
+        <AnnotationPage />
       </ErrorBoundary>
     </div>
   );
 }
-
-// ReactDOM.render(<MainApp />, document.getElementById('app'));
 
 const theme = createTheme();
 

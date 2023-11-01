@@ -7,7 +7,12 @@ import Radio from '@mui/joy/Radio';
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 
-export default function Controls({ setHighlights, highlights }) {
+export default function Controls({
+  setHighlights,
+  highlights,
+  handleSubmit,
+  noSkip,
+}) {
   const [isConspiracy, setIsConspiracy] = useState(null);
   const [isInvalid, setIsInvalid] = useState(false);
 
@@ -76,17 +81,19 @@ export default function Controls({ setHighlights, highlights }) {
         >
           Clear
         </Button>
-        <Button
-          onClick={() => {
-            setHighlights([]);
-            setIsConspiracy(null);
-            setIsInvalid(false);
-            alert('Skipped');
-          }}
-          color="danger"
-        >
-          Skip
-        </Button>
+        {!noSkip && (
+          <Button
+            onClick={() => {
+              setHighlights([]);
+              setIsConspiracy(null);
+              setIsInvalid(false);
+              alert('Skipped');
+            }}
+            color="danger"
+          >
+            Skip
+          </Button>
+        )}
         <Button
           onClick={() => {
             if (isConspiracy === null) {
@@ -94,20 +101,21 @@ export default function Controls({ setHighlights, highlights }) {
               return;
             }
 
-            alert(
-              JSON.stringify(
-                {
-                  isConspiracy,
-                  annotations: highlights.map((highlight) => ({
-                    startIndex: highlight.start,
-                    endIndex: highlight.end,
-                    type: highlight.aspect.title,
-                  })),
-                },
-                null,
-                2
-              )
-            );
+            const result = {
+              isConspiracy,
+              annotations: highlights.map((highlight) => ({
+                startIndex: highlight.start,
+                endIndex: highlight.end,
+                type: highlight.aspect.title,
+              })),
+            };
+
+            if (handleSubmit) {
+              handleSubmit(result);
+            } else {
+              alert(JSON.stringify(result, null, 2));
+            }
+
             setHighlights([]);
             setIsConspiracy(null);
             setIsInvalid(false);

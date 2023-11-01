@@ -8,12 +8,15 @@ import TextContainer from './TextContainer/index.jsx';
 import HelpModal from '../../modals/HelpModal/index.jsx';
 
 export default function Annotation({
-  aspects,
   text,
   currentAspect,
   setCurrentAspect,
   highlights,
   setHighlights,
+  height,
+  readonly,
+  textContainerClass,
+  testTask,
 }) {
   const [currentHighlightId, setCurrentHighlightId] = useState(null);
   const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
@@ -25,13 +28,18 @@ export default function Annotation({
       }}
     >
       <Card sx={{ padding: 0, overflow: 'hidden' }}>
-        <AspectButtonsLst
-          aspects={aspects}
-          currentAspect={currentAspect}
-          setCurrentAspect={setCurrentAspect}
-          setIsHelpModalVisible={setIsHelpModalVisible}
-        />
+        {!readonly && (
+          <AspectButtonsLst
+            testTask={testTask}
+            currentAspect={currentAspect}
+            setCurrentAspect={setCurrentAspect}
+            setIsHelpModalVisible={setIsHelpModalVisible}
+          />
+        )}
         <TextContainer
+          textContainerClass={textContainerClass}
+          readonly={readonly}
+          height={height}
           currentAspect={currentAspect}
           text={text}
           setHighlights={setHighlights}

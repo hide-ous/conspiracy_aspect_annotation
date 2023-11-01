@@ -7,11 +7,13 @@ import Tooltip from '@mui/joy/Tooltip';
 import HelpIcon from '@mui/icons-material/Help';
 import IconButton from '@mui/joy/IconButton';
 
+import { aspects } from '../../../constants/main.js';
+
 export default function AspectButtonsLst({
-  aspects,
   currentAspect,
   setCurrentAspect,
   setIsHelpModalVisible,
+  testTask,
 }) {
   return (
     <Box
@@ -45,13 +47,14 @@ export default function AspectButtonsLst({
             placement="top"
           >
             <Button
+              disabled={testTask && aspect.title !== currentAspect.title}
               color={aspect.color}
-              onClick={() => setCurrentAspect(aspect)}
+              onClick={() => setCurrentAspect?.(aspect)}
               size="lg"
               sx={{
                 textTransform: 'uppercase',
                 outline:
-                  currentAspect.title === aspect.title
+                  currentAspect?.title === aspect.title
                     ? '3px solid #F44336'
                     : '',
               }}

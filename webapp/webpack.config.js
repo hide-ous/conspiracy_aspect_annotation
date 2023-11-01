@@ -36,12 +36,12 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(svg|png|jpe?g|ttf)$/,
+        test: /\.(png|jpe?g|gif)$/i,
         loader: 'url-loader',
         options: { limit: 100000 },
       },
       {
-        test: /\.jpg$/,
+        test: /\.(png|jpe?g|gif)$/i,
         loader: 'file-loader',
       },
     ],

@@ -2,11 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 import Word from './Word/index.jsx';
 
-const getTextLines = () => {
-  const spans = document.querySelectorAll('span.word');
+const getTextLines = (textContainerClass) => {
+  const spans = document.querySelectorAll(
+    textContainerClass ? `.${textContainerClass} span.word` : 'span.word'
+  );
 
   const lines = [];
 
@@ -39,11 +42,21 @@ export default function TextContainer({
   highlights,
   currentHighlightId,
   setCurrentHighlightId,
+  height,
+  readonly,
+  textContainerClass,
 }) {
   const [splittedText, setSplittedText] = useState([]);
   const [lines, setLines] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const textRef = useRef();
+
+  useEffect(() => {
+    if (lines.length && isLoading) {
+      setIsLoading(false);
+    }
+  }, [lines, isLoading]);
 
   useEffect(() => {
     const splitted = text.split(' ');
@@ -52,7 +65,7 @@ export default function TextContainer({
 
   useEffect(() => {
     setTimeout(() => {
-      const lns = getTextLines();
+      const lns = getTextLines(textContainerClass);
       setLines(lns);
     }, 200);
   }, [text, highlights, setLines]);
@@ -118,20 +131,45 @@ export default function TextContainer({
     }
   };
 
+  const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
+
   return (
     <Box
       sx={{
-        height: '55vh',
-        maxHeight: 500,
-        padding: 3,
-        paddingTop: 1,
-        overflowY: 'auto',
+        position: 'relative',
+        height: readonly ? '' : '55vh',
+        maxHeight: height ? `${height}px` : '500px',
+        minHeight: height ? `${height}px` : '',
+        padding: readonly ? 2 : 3,
+        paddingTop: readonly ? 2 : 1,
+        overflowY: readonly ? 'hidden' : 'auto',
         overflowX: 'hidden',
+        backgroundColor: 'white',
       }}
+      className={textContainerClass}
     >
-      <Typography level="body-lg" ref={textRef}>
+      {isLoading && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+          }}
+        >
+          <CircularProgress color="primary" />
+        </Box>
+      )}
+      <Typography
+        level="body-lg"
+        ref={textRef}
+        sx={{
+          opacity: isLoading ? 0 : 1,
+        }}
+      >
         {splittedText.map((word, index) => (
           <Word
+            readonly={readonly}
             createHighlight={createHighlight}
             lines={lines}
             setHighlights={setHighlights}
@@ -141,6 +179,7 @@ export default function TextContainer({
             highlights={highlights}
             currentHighlightId={currentHighlightId}
             setCurrentHighlightId={setCurrentHighlightId}
+            isFirefox={isFirefox}
           />
         ))}
       </Typography>

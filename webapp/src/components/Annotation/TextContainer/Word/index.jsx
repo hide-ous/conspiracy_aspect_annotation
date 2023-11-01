@@ -127,6 +127,8 @@ export default function Word({
   currentHighlightId,
   setCurrentHighlightId,
   createHighlight,
+  readonly,
+  isFirefox,
 }) {
   const [highlightCount, setHighlightCount] = useState(0);
   const [isInsideCurrentHighlight, setIsInsideCurrentHighlight] =
@@ -203,12 +205,20 @@ export default function Word({
   const reversedHighlights = [...highlights];
 
   return (
-    <>
+    <span
+      style={{
+        whiteSpace: isFirefox ? '' : 'nowrap',
+      }}
+    >
       <span
         data-index={index}
         style={spanStyle}
         className={`word ${isInsideCurrentHighlight ? 'highlighted' : ''}`}
         onMouseUp={() => {
+          if (readonly) {
+            return;
+          }
+
           createHighlight(index);
         }}
       >
@@ -228,7 +238,13 @@ export default function Word({
                 key={highlight.id}
                 id={highlight.id}
                 currentAspect={highlight.aspect}
-                onDelete={() => deleteHighlight(highlight.id)}
+                onDelete={() => {
+                  if (readonly) {
+                    return;
+                  }
+
+                  deleteHighlight(highlight.id);
+                }}
                 setCurrentHighlightId={setCurrentHighlightId}
                 colors={colors}
               />
@@ -294,6 +310,6 @@ export default function Word({
           }
         })}
       </span>
-    </>
+    </span>
   );
 }

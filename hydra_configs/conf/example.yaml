@@ -3,17 +3,17 @@ defaults:
   - /mephisto/blueprint: static_react_task
   - /mephisto/architect: local
   - /mephisto/provider: mock
-
 mephisto:
   blueprint:
     task_source: ${task_dir}/webapp/build/bundle.js
     link_task_source: false
     extra_source_dir: ${task_dir}/webapp/src/static
-    units_per_assignment: 2
+    units_per_assignment: 999
+    onboarding_qualification: test-react-static-qualification
   task:
     task_name: crowdwork
     task_title: 'Rating a sentence as good or bad'
-    task_description: 'A system for crowdwork annotation. The system will enable crowdworkers to 1) classify texts as conspiracy theories and 2) to identify specific narrative components of conspiracy theories in the text (called “aspects”)..'
+    task_description: 'A system for crowdwork annotation. The system will enable crowdworkers to 1) classify texts as conspiracy theories and 2) to identify specific narrative components of conspiracy theories in the text (called “aspects”).'
     task_reward: 0.05
     task_tags: 'test,simple,button'
     # We expect to be able to handle 300 concurrent tasks without issue
