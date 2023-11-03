@@ -55,6 +55,7 @@ export default function TaskUi({
           setHighlights={setHighlights}
         />
         <Controls
+          testTask
           noSkip
           highlights={highlights}
           setHighlights={setHighlights}

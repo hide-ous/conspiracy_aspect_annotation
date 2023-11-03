@@ -54,6 +54,8 @@ def validate_aspect_test(input, output):
 
 
 def handle_onboarding(onboarding_data):
+    if len(onboarding_data["inputs"][key]) != len(onboarding_data["outputs"][key]):
+        return False
     for key in onboarding_data["outputs"]:
         if (validate_aspect_test(onboarding_data["inputs"][key], onboarding_data["outputs"][key]) == False):
             return False

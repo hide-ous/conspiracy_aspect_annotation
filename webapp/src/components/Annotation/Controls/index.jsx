@@ -12,6 +12,7 @@ export default function Controls({
   highlights,
   handleSubmit,
   noSkip,
+  testTask,
 }) {
   const [isConspiracy, setIsConspiracy] = useState(null);
   const [isInvalid, setIsInvalid] = useState(false);
@@ -25,50 +26,52 @@ export default function Controls({
         alignItems: 'center',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          marginBottom: 3,
-        }}
-      >
-        <FormLabel
+      {!testTask && (
+        <Box
           sx={{
-            marginBottom: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            marginBottom: 3,
           }}
         >
-          Is this a conspiracy?
-        </FormLabel>
-        <RadioGroup orientation="horizontal">
-          <Radio
-            checked={isConspiracy === 'Yes'}
-            onChange={() => setIsConspiracy('Yes')}
-            name="radio-buttons"
-            label="Yes"
-            slotProps={{ input: { 'aria-label': 'Yes' } }}
-          />
-          <Radio
-            checked={isConspiracy === 'No'}
-            onChange={() => setIsConspiracy('No')}
-            name="radio-buttons"
-            label="No"
-            slotProps={{ input: { 'aria-label': 'No' } }}
-          />
-          <Radio
-            checked={isConspiracy === "Can't tell"}
-            onChange={() => setIsConspiracy("Can't tell")}
-            name="radio-buttons"
-            label="Can't tell"
-            slotProps={{ input: { 'aria-label': "Can't tell" } }}
-          />
-        </RadioGroup>
-        {isInvalid && isConspiracy === null && (
-          <FormHelperText sx={{ color: 'red', marginTop: 1 }}>
-            This field is required
-          </FormHelperText>
-        )}
-      </Box>
+          <FormLabel
+            sx={{
+              marginBottom: 1,
+            }}
+          >
+            Is this a conspiracy?
+          </FormLabel>
+          <RadioGroup orientation="horizontal">
+            <Radio
+              checked={isConspiracy === 'Yes'}
+              onChange={() => setIsConspiracy('Yes')}
+              name="radio-buttons"
+              label="Yes"
+              slotProps={{ input: { 'aria-label': 'Yes' } }}
+            />
+            <Radio
+              checked={isConspiracy === 'No'}
+              onChange={() => setIsConspiracy('No')}
+              name="radio-buttons"
+              label="No"
+              slotProps={{ input: { 'aria-label': 'No' } }}
+            />
+            <Radio
+              checked={isConspiracy === "Can't tell"}
+              onChange={() => setIsConspiracy("Can't tell")}
+              name="radio-buttons"
+              label="Can't tell"
+              slotProps={{ input: { 'aria-label': "Can't tell" } }}
+            />
+          </RadioGroup>
+          {isInvalid && isConspiracy === null && (
+            <FormHelperText sx={{ color: 'red', marginTop: 1 }}>
+              This field is required
+            </FormHelperText>
+          )}
+        </Box>
+      )}
       <Box sx={{ display: 'flex', gap: 1 }}>
         <Button
           onClick={() => {
@@ -96,7 +99,7 @@ export default function Controls({
         )}
         <Button
           onClick={() => {
-            if (isConspiracy === null) {
+            if (isConspiracy === null && !testTask) {
               setIsInvalid(true);
               return;
             }
