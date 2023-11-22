@@ -33,3 +33,4 @@ RUN pip install --upgrade pip
 RUN cd /mephisto && pip install -e .
 RUN mephisto check # Run mephisto check so a mock requester gets created
 CMD mephisto check
+RUN pip install "pymongo[srv]"

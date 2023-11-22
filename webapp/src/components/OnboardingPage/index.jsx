@@ -13,7 +13,11 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
   const [currentOnboardingStep, setCurrentOnboardingStep] = useState(0);
   const [testTaskHighlights, setTestTaskHiglights] = useState([]);
 
-  const submitOnboardingTask = () => {
+  const submitOnboardingTask = (survey) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const worker_id = urlParams.get('worker_id');
+    const assignment_id = urlParams.get('assignment_id');
+
     const getFilteredHiglights = (aspectTitle) => {
       return testTaskHighlights
         .filter((hl) => hl.aspect.title === aspectTitle)
@@ -24,11 +28,18 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
     };
 
     onSubmit({
-      Actor: getFilteredHiglights('Actor'),
-      Action: getFilteredHiglights('Action'),
-      Pattern: getFilteredHiglights('Pattern'),
-      Threat: getFilteredHiglights('Threat'),
-      Secrecy: getFilteredHiglights('Secrecy'),
+      aspects: {
+        Actor: getFilteredHiglights('Actor'),
+        Action: getFilteredHiglights('Action'),
+        Pattern: getFilteredHiglights('Pattern'),
+        Threat: getFilteredHiglights('Threat'),
+        Secrecy: getFilteredHiglights('Secrecy'),
+      },
+      survey: {
+        answers: survey,
+        worker_id,
+        assignment_id,
+      },
     });
   };
 

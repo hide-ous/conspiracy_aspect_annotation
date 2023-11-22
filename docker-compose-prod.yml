@@ -11,3 +11,12 @@ services:
     working_dir: /app
     restart: always
     command: 'python run_task.py'
+
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./db:/data/db
+    restart: always

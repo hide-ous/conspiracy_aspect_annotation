@@ -215,7 +215,7 @@ export default function Survey({ handleSubmit }) {
           onClick={() => {
             if (currentQuestionIndex === questions.length - 1) {
               console.log(answers);
-              handleSubmit();
+              handleSubmit(answers);
             } else {
               setCurrentQuestionIndex((prevState) => prevState + 1);
             }

@@ -30,7 +30,13 @@ function MainApp() {
     );
   }
   if (isPreview) {
-    return <AnnotationPage />;
+    return (
+      <AnnotationPage
+        taskData={{
+          body: "The earliest legend that connects the Tower with a raven is the euhemerised Welsh tale of the war against the Irish leader Matholwch who had mistreated the princess Branwen. Branwen's brother Brân the Blessed (King of the Britons) ordered his followers to cut off his head and bury it beneath The White Hill (upon which the Tower now stands) facing out towards France as a talisman to protect Britain from foreign invasion. Brân is the modern Welsh word for raven and the magical and protective qualities of ravens are attested throughout Celtic mythology. The knowledge that Brân's head was buried beneath the White Hill would have served as protective reassurance in the Celtic tradition, just as modern ideas about the presence of ravens does. As such, it is likely to have its origins in British folklore.",
+        }}
+      />
+    );
   }
   if (isLoading || !initialTaskData) {
     return <LoadingScreen />;
@@ -53,7 +59,10 @@ function MainApp() {
           isOnboarding={isOnboarding}
           onError={handleFatalError}
         /> */}
-        <AnnotationPage />
+        <AnnotationPage
+          taskData={initialTaskData}
+          handleSubmit={handleSubmit}
+        />
       </ErrorBoundary>
     </div>
   );

@@ -4,6 +4,8 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
+import db_connect
+
 from mephisto.abstractions.blueprints.mixins.screen_task_required import (
     ScreenTaskRequired,
 )
@@ -15,6 +17,9 @@ from mephisto.abstractions.blueprints.abstract.static_task.static_blueprint impo
 )
 from rich import print
 from omegaconf import DictConfig
+
+db_client = db_connect.get_mongo_client()
+
 
 
 def my_screening_unit_generator():
@@ -54,11 +59,15 @@ def validate_aspect_test(input, output):
 
 
 def handle_onboarding(onboarding_data):
-    for key in onboarding_data["outputs"]:
-        if len(onboarding_data["inputs"][key]) != len(onboarding_data["outputs"][key]):
+    for key in onboarding_data["outputs"]["aspects"]:
+        if len(onboarding_data["inputs"][key]) != len(onboarding_data["outputs"]["aspects"][key]):
             return False
-        if (validate_aspect_test(onboarding_data["inputs"][key], onboarding_data["outputs"][key]) == False):
+        if (validate_aspect_test(onboarding_data["inputs"][key], onboarding_data["outputs"]["aspects"][key]) == False):
             return False
+    
+    surveys_db = db_client['surveys']
+    surveys_collection = surveys_db['surveys']
+    surveys_collection.insert_one(onboarding_data["outputs"]['survey'])
     
     return True
 
@@ -73,13 +82,7 @@ def main(operator: Operator, cfg: DictConfig) -> None:
         "Pattern": [{"id": 5, "start": 72, "end": 79}],
         "Threat": [{"id": 6, "start": 70, "end": 71}],
         "Secrecy": [{"id": 7, "start": 93, "end": 103}],
-    },
-        static_task_data=[
-            {"text": "This text is good text!"},
-            {"text": "This text is bad text!"},
-        ],
-        validate_onboarding=handle_onboarding,
-    )
+    },   validate_onboarding=handle_onboarding,)
 
     if is_using_screening_units:
         """

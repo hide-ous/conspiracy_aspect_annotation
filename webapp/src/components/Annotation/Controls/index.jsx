@@ -7,12 +7,19 @@ import Radio from '@mui/joy/Radio';
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 
+const getSelectedString = (text, startIndex, endIndex) => {
+  const textArray = text.split(' ');
+  const selectedArray = textArray.slice(startIndex, endIndex + 1);
+  return selectedArray.join(' ');
+};
+
 export default function Controls({
   setHighlights,
   highlights,
   handleSubmit,
   noSkip,
   testTask,
+  text,
 }) {
   const [isConspiracy, setIsConspiracy] = useState(null);
   const [isInvalid, setIsInvalid] = useState(false);
@@ -87,10 +94,15 @@ export default function Controls({
         {!noSkip && (
           <Button
             onClick={() => {
+              if (handleSubmit) {
+                handleSubmit({ isSkipped: true });
+              } else {
+                alert('Skip');
+              }
+
               setHighlights([]);
               setIsConspiracy(null);
               setIsInvalid(false);
-              alert('Skipped');
             }}
             color="danger"
           >
@@ -106,10 +118,12 @@ export default function Controls({
 
             const result = {
               isConspiracy,
+              isSkipped: false,
               annotations: highlights.map((highlight) => ({
                 startIndex: highlight.start,
                 endIndex: highlight.end,
                 type: highlight.aspect.title,
+                text: getSelectedString(text, highlight.start, highlight.end),
               })),
             };
 

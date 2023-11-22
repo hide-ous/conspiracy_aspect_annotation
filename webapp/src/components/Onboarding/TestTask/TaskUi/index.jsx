@@ -60,6 +60,7 @@ export default function TaskUi({
           highlights={highlights}
           setHighlights={setHighlights}
           handleSubmit={showExpectedResulAndSaveActualResult}
+          text={text}
         />
       </Box>
     </Box>
