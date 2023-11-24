@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { useMephistoTask, ErrorBoundary } from 'mephisto-task';
 import { createTheme, ThemeProvider } from '@mui/material';
 
-import { LoadingScreen } from './components/core_components.jsx';
+import LoadingPage from './components/LoadingPage/index.jsx';
 import AnnotationPage from './components/AnnotationPage/index.jsx';
 import OnboardingPage from './components/OnboardingPage/index.jsx';
 
@@ -39,7 +39,7 @@ function MainApp() {
     );
   }
   if (isLoading || !initialTaskData) {
-    return <LoadingScreen />;
+    return <LoadingPage />;
   }
   if (isOnboarding) {
     return (
@@ -53,12 +53,6 @@ function MainApp() {
   return (
     <div>
       <ErrorBoundary handleError={handleFatalError}>
-        {/* <BaseFrontend
-          taskData={initialTaskData}
-          onSubmit={handleSubmit}
-          isOnboarding={isOnboarding}
-          onError={handleFatalError}
-        /> */}
         <AnnotationPage
           taskData={initialTaskData}
           handleSubmit={handleSubmit}
