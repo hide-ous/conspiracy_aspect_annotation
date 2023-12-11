@@ -18,7 +18,10 @@ export default function TaskUi({
   return (
     <Box>
       <Typography level="h2" marginBottom={2}>
-        Test task: annotate the {tasks[currentTaskIndex].aspectTitle} feature
+        Test task
+      </Typography>
+      <Typography level="h3" marginBottom={3}>
+        Annotate {tasks[currentTaskIndex].aspectTitle}
       </Typography>
       <Typography marginBottom={3}>
         {tasks?.[currentTaskIndex]?.description}

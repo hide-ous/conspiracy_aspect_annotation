@@ -21,7 +21,9 @@ export default function HighlightStart({
           left: 0,
           zIndex: 1,
           userSelect: 'none',
-          backgroundColor: colors[currentAspect.color] || currentAspect.color,
+          backgroundColor: !colors[currentAspect.color]
+            ? currentAspect.color
+            : '',
           color: 'white',
         }}
         onMouseEnter={() => {

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import Box from '@mui/joy/Box';
 
@@ -79,6 +79,7 @@ export default function TestTask({
   setTestTaskHiglights,
   initialTaskData,
   userInput,
+  setIsTestTaskCompleted,
 }) {
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [highlights, setHighlights] = useState([]);
@@ -89,6 +90,13 @@ export default function TestTask({
     () => generateTasks(initialTaskData),
     [initialTaskData]
   );
+
+  // Scroll to top when the first task is shown
+  useEffect(() => {
+    if (currentTaskIndex === 0) {
+      window.scrollTo(0, 0);
+    }
+  }, [currentTaskIndex]);
 
   const getPreviousHighlights = (taskIndex) => {
     const previousHighlights = [];
@@ -101,6 +109,7 @@ export default function TestTask({
 
   const switchToNextTask = () => {
     if (currentTaskIndex === tasks.length - 1) {
+      setIsTestTaskCompleted(true);
       onContinue();
       return;
     }
