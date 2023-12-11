@@ -62,14 +62,15 @@ def handle_onboarding(onboarding_data):
     for key in onboarding_data["outputs"]["aspects"]:
         if len(onboarding_data["inputs"][key]) != len(onboarding_data["outputs"]["aspects"][key]):
             # Onboarding validation disabled as requested by the client
-            # To enable it, uncomment the line below and remove 'return True'
+            # To enable it, uncomment the line below and remove the pass statement
             #return False
-            return True
+            pass
+
         if (validate_aspect_test(onboarding_data["inputs"][key], onboarding_data["outputs"]["aspects"][key]) == False):
             # Onboarding validation disabled as requested by the client
-            # To enable it, uncomment the line below and remove 'return True'
+            # To enable it, uncomment the line below and remove the pass statement
             #return False
-            return True
+            pass
     
     surveys_db = db_client['surveys']
     surveys_collection = surveys_db['surveys']
