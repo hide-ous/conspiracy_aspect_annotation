@@ -16,9 +16,17 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   const [results, setResults] = useState([]);
 
   const containerRef = useRef();
+  let texts;
+  try {
+    texts = JSON.parse(taskData?.texts);
+  } catch (error) {
+    // console.log('error', error);
+  }
+  console.log('taskdata', taskData);
 
-  const texts = JSON.parse(taskData?.texts);
-  console.log(texts);
+  if (!texts) {
+    return null;
+  }
 
   useEffect(() => {
     containerRef.current.focus();

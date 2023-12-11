@@ -18,7 +18,7 @@ export default function Highlight({
         top: 36 + 22 * prevHighlightCount,
         width: '100%',
         height: 3,
-        backgroundColor: colors[color],
+        backgroundColor: colors[color] || color,
         userSelect: 'none',
       }}
     />

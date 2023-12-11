@@ -21,12 +21,14 @@ export default function HighlightStart({
           left: 0,
           zIndex: 1,
           userSelect: 'none',
+          backgroundColor: colors[currentAspect.color] || currentAspect.color,
+          color: 'white',
         }}
         onMouseEnter={() => {
           setCurrentHighlightId(id);
           document.body.style.setProperty(
             '--current-highlight-color',
-            colors[currentAspect.color]
+            colors[currentAspect.color] || currentAspect.color
           );
         }}
         onMouseLeave={() => {
@@ -36,15 +38,17 @@ export default function HighlightStart({
         variant="solid"
         color={currentAspect.color}
         startDecorator={
-          <ChipDelete
-            onDelete={() => {
-              if (readonly) {
-                return;
-              }
+          !readonly ? (
+            <ChipDelete
+              onDelete={() => {
+                if (readonly) {
+                  return;
+                }
 
-              onDelete();
-            }}
-          />
+                onDelete();
+              }}
+            />
+          ) : null
         }
       >
         {currentAspect.title}

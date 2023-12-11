@@ -69,6 +69,7 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
             initialTaskData={initialTaskData}
             setTestTaskHiglights={setTestTaskHiglights}
             onContinue={() => setCurrentOnboardingStep(3)}
+            userInput={testTaskHighlights}
           />
         )}
         {currentOnboardingStep === 3 && (

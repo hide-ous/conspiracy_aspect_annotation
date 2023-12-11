@@ -61,9 +61,15 @@ def validate_aspect_test(input, output):
 def handle_onboarding(onboarding_data):
     for key in onboarding_data["outputs"]["aspects"]:
         if len(onboarding_data["inputs"][key]) != len(onboarding_data["outputs"]["aspects"][key]):
-            return False
+            # Onboarding validation disabled as requested by the client
+            # To enable it, uncomment the line below and remove 'return True'
+            #return False
+            return True
         if (validate_aspect_test(onboarding_data["inputs"][key], onboarding_data["outputs"]["aspects"][key]) == False):
-            return False
+            # Onboarding validation disabled as requested by the client
+            # To enable it, uncomment the line below and remove 'return True'
+            #return False
+            return True
     
     surveys_db = db_client['surveys']
     surveys_collection = surveys_db['surveys']
@@ -76,12 +82,12 @@ def handle_onboarding(onboarding_data):
 def main(operator: Operator, cfg: DictConfig) -> None:
     is_using_screening_units = cfg.mephisto.blueprint["use_screening_task"]
     shared_state = SharedStaticTaskState(onboarding_data={
-        "text": "The earliest legend that connects the Tower with a raven is the euhemerised Welsh tale of the war against the Irish leader Matholwch who had mistreated the princess Branwen. Branwen's brother Brân the Blessed (King of the Britons) ordered his followers to cut off his head and bury it beneath The White Hill (upon which the Tower now stands) facing out towards France as a talisman to protect Britain from foreign invasion. Brân is the modern Welsh word for raven and the magical and protective qualities of ravens are attested throughout Celtic mythology. The knowledge that Brân's head was buried beneath the White Hill would have served as protective reassurance in the Celtic tradition, just as modern ideas about the presence of ravens does. As such, it is likely to have its origins in British folklore.",
-        "Actor": [{"id": 1, "start": 29, "end": 37}, {"id": 2, "start": 20, "end": 22}],
-        "Action": [{"id": 3, "start": 25, "end": 25}, {"id": 4, "start": 38, "end": 38}],
-        "Pattern": [{"id": 5, "start": 72, "end": 79}],
-        "Threat": [{"id": 6, "start": 70, "end": 71}],
-        "Secrecy": [{"id": 7, "start": 93, "end": 103}],
+        "text": "You better fight your government, and you better fight now. This is a full blown attempt to disarm and control you. They are taking down the internet, now they are taking your way to defend yourself and your families. If you don't fight now your children are as good as dead. Fucking dead. Stand up. We are with you here in the USA.",
+        "Actor": [{"id": 1, "start": 4, "end": 4}],
+        "Action": [{"id": 2, "start": 17, "end": 20}],
+        "Pattern": [{"id": 3, "start": 10, "end": 20}],
+        "Threat": [{"id": 4, "start": 23, "end": 26}],
+        "Secrecy": [{"id": 5, "start": 30, "end": 38}],
     },   validate_onboarding=handle_onboarding,)
 
     if is_using_screening_units:

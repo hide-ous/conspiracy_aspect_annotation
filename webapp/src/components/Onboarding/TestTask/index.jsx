@@ -78,6 +78,7 @@ export default function TestTask({
   onContinue,
   setTestTaskHiglights,
   initialTaskData,
+  userInput,
 }) {
   const [currentTaskIndex, setCurrentTaskIndex] = useState(0);
   const [highlights, setHighlights] = useState([]);
@@ -134,6 +135,7 @@ export default function TestTask({
           highlights={tasks?.[currentTaskIndex]?.expectedHighlights}
           switchToNextTask={switchToNextTask}
           height={tasks?.[currentTaskIndex].resultHeight}
+          userInput={userInput}
         />
       ) : (
         <TaskUi
