@@ -12,8 +12,13 @@ import './styles.css';
 export default function AnnotationPage({ taskData, handleSubmit }) {
   const [currentAspect, setCurrentAspect] = useState(aspects[0]);
   const [highlights, setHighlights] = useState([]);
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [results, setResults] = useState([]);
 
   const containerRef = useRef();
+
+  const texts = JSON.parse(taskData?.texts);
+  console.log(texts);
 
   useEffect(() => {
     containerRef.current.focus();
@@ -25,6 +30,22 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
       setCurrentAspect(aspect);
     }
   };
+
+  const saveResultsAndSwitchToNextText = (result) => {
+    if (currentTextIndex < texts.length - 1) {
+      setResults((prevResults) => [
+        ...prevResults,
+        { text: texts[currentTextIndex].body, result },
+      ]);
+      setCurrentTextIndex(currentTextIndex + 1);
+    } else {
+      handleSubmit({
+        results: [...results, { text: texts[currentTextIndex].body, result }],
+      });
+    }
+  };
+
+  console.log(results);
 
   return (
     <CssVarsProvider>
@@ -49,15 +70,15 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
         <Annotation
           currentAspect={currentAspect}
           setCurrentAspect={setCurrentAspect}
-          text={taskData?.body}
+          text={texts?.[currentTextIndex]?.body}
           highlights={highlights}
           setHighlights={setHighlights}
         />
         <Controls
           setHighlights={setHighlights}
           highlights={highlights}
-          handleSubmit={handleSubmit}
-          text={taskData?.body}
+          handleSubmit={saveResultsAndSwitchToNextText}
+          text={texts?.[currentTextIndex]?.body}
         />
       </Sheet>
     </CssVarsProvider>

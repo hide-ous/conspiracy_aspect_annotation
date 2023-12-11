@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+  crowdwork:
+    container_name: crowdwork
+    build: ./
+    ports:
+      - '3052:3000'
+    volumes:
+      - ./:/app
+    working_dir: /app
+    restart: always
+    command: 'python run_task.py mephisto.blueprint.units_per_assignment=3'
+
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - '27018:27017'
+    volumes:
+      - ./db:/data/db
+    restart: always

@@ -61,7 +61,7 @@ export default function TextContainer({
   useEffect(() => {
     const splitted = text.split(' ');
     setSplittedText(splitted);
-  }, []);
+  }, [text]);
 
   useEffect(() => {
     setTimeout(() => {
