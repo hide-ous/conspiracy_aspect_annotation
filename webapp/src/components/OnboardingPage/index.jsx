@@ -53,9 +53,9 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          paddingTop: '5vh',
-          paddingBottom: '5vh',
-          p: 6,
+          paddingTop: currentOnboardingStep !== 3 ? '5vh' : 0,
+          paddingBottom: currentOnboardingStep !== 3 ? '5vh' : 0,
+          p: currentOnboardingStep !== 3 ? 6 : 0,
         }}
       >
         {currentOnboardingStep === 0 && (

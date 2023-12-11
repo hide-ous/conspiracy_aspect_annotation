@@ -4,7 +4,9 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
 
-import Question from './Question/index.jsx';
+import QuestionsTable from './QuestionsTable/index.jsx';
+import QuestionsList from './QuestionsList/index.jsx';
+import Progress from './Progress/index.jsx';
 
 const likertScale = [
   {
@@ -161,8 +163,15 @@ const questions = [
   },
 ];
 
+const likertScaleQuestions = questions.slice(0, 10).map((question) => ({
+  question: question.question,
+  options: question.options,
+}));
+
+const restQuestions = questions.slice(10);
+
 export default function Survey({ handleSubmit }) {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [page, setPage] = useState(0);
   const [answers, setAnswers] = useState(
     questions.map((question) => ({
       question: question.question,
@@ -170,15 +179,17 @@ export default function Survey({ handleSubmit }) {
     }))
   );
 
-  const answerQuestion = (answer) => {
-    const newAnswers = [...answers];
-    newAnswers[currentQuestionIndex] = {
-      question: questions[currentQuestionIndex].question,
-      answer,
-    };
+  const areAllLikertQuestionsAnswered = answers
+    .slice(0, likertScaleQuestions.length)
+    .every((answer) => answer.answer);
 
-    setAnswers(newAnswers);
-  };
+  const areAllQuestionsAnswered = answers.every((answer) => answer.answer);
+
+  const answeredQuestionCount = answers.filter(
+    (answer) => answer.answer
+  ).length;
+  const totalQuestionCount = answers.length;
+  const currentProgress = (answeredQuestionCount / totalQuestionCount) * 100;
 
   return (
     <Box
@@ -186,38 +197,91 @@ export default function Survey({ handleSubmit }) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '600px',
+        //   maxWidth: '1200px',
+        height: '100vh',
+        overflowY: 'auto',
+        p: 6,
+        pt: 0,
+        backgroundColor: '#f0f4f8',
       }}
     >
-      <Typography level="h2" marginBottom={2}>
-        Survey
-      </Typography>
-      <Typography marginBottom={2}>
-        {currentQuestionIndex < 10
-          ? 'Answer to which degree you agree with the following statement:'
-          : 'Select the answer that best reflects your perception:'}
-      </Typography>
-      <Box marginBottom={2}>
-        <Question
-          question={questions[currentQuestionIndex]}
-          answerQuestion={answerQuestion}
-          value={answers[currentQuestionIndex]?.answer}
-        />
+      <Box
+        sx={{
+          textAlign: 'center',
+          width: '100%',
+          position: 'sticky',
+          zIndex: 1,
+          top: 0,
+          pt: 6,
+          backgroundColor: '#f0f4f8',
+        }}
+      >
+        <Typography level="h2" marginBottom={2}>
+          Survey
+        </Typography>
       </Box>
       <Box
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
+          width: 'calc(100vw - 96px)',
+          position: 'sticky',
+          zIndex: 1,
+          top: '104px',
+          backgroundColor: '#f0f4f8',
+          pb: 2,
         }}
       >
+        <Progress progress={currentProgress} />
+      </Box>
+      <Box
+        sx={{
+          width: '100%',
+          position: 'sticky',
+          zIndex: 1,
+          top: '126px',
+          backgroundColor: '#f0f4f8',
+        }}
+      >
+        <Typography
+          marginBottom={2}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          {page === 0
+            ? 'Answer to which degree you agree with the following statements:'
+            : 'Select the answer that best reflects your perception:'}
+        </Typography>
+      </Box>
+      <Box marginBottom={10}>
+        {page === 0 ? (
+          <QuestionsTable
+            questions={likertScaleQuestions}
+            answers={answers}
+            setAnswers={setAnswers}
+          />
+        ) : (
+          <QuestionsList
+            questions={restQuestions}
+            answers={answers}
+            setAnswers={setAnswers}
+          />
+        )}
+      </Box>
+      <Box>
         <Button
-          disabled={!answers[currentQuestionIndex].answer}
+          sx={{
+            width: 200,
+          }}
+          disabled={
+            page === 0
+              ? !areAllLikertQuestionsAnswered
+              : !areAllQuestionsAnswered
+          }
           onClick={() => {
-            if (currentQuestionIndex === questions.length - 1) {
-              console.log(answers);
-              handleSubmit(answers);
+            if (page === 0) {
+              setPage(1);
             } else {
-              setCurrentQuestionIndex((prevState) => prevState + 1);
+              handleSubmit(answers);
             }
           }}
         >
