@@ -4,7 +4,6 @@ import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
 
 import Introduction from '../Onboarding/Introduction/index.jsx';
-import InformedConsent from '../Onboarding/InformedConsent/index.jsx';
 import Instructions from '../Onboarding/Instructions/index.jsx';
 import TestTask from '../Onboarding/TestTask/index.jsx';
 import Survey from '../Onboarding/Survey/index.jsx';
@@ -60,22 +59,19 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
         }}
       >
         {currentOnboardingStep === 0 && (
-          <Introduction onContinue={() => setCurrentOnboardingStep(1)} />
+          <Introduction onConsent={() => setCurrentOnboardingStep(1)} />
         )}
         {currentOnboardingStep === 1 && (
-          <InformedConsent onConsent={() => setCurrentOnboardingStep(2)} />
+          <Instructions onContinue={() => setCurrentOnboardingStep(2)} />
         )}
         {currentOnboardingStep === 2 && (
-          <Instructions onContinue={() => setCurrentOnboardingStep(3)} />
-        )}
-        {currentOnboardingStep === 3 && (
           <TestTask
             initialTaskData={initialTaskData}
             setTestTaskHiglights={setTestTaskHiglights}
-            onContinue={() => setCurrentOnboardingStep(4)}
+            onContinue={() => setCurrentOnboardingStep(3)}
           />
         )}
-        {currentOnboardingStep === 4 && (
+        {currentOnboardingStep === 3 && (
           <Survey handleSubmit={submitOnboardingTask} />
         )}
       </Sheet>

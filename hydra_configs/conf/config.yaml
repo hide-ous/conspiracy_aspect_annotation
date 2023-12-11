@@ -10,7 +10,7 @@ mephisto:
     link_task_source: false
     extra_source_dir: ${task_dir}/webapp/src/static
     units_per_assignment: 1
-    #onboarding_qualification: test-react-static-qualification
+    onboarding_qualification: test-react-static-qualification
   task:
     task_name: crowdwork
     task_title: 'Identifing conspiracy teories'
