@@ -91,13 +91,6 @@ export default function TestTask({
     [initialTaskData]
   );
 
-  // Scroll to top when the first task is shown
-  useEffect(() => {
-    if (currentTaskIndex === 0) {
-      window.scrollTo(0, 0);
-    }
-  }, [currentTaskIndex]);
-
   const getPreviousHighlights = (taskIndex) => {
     const previousHighlights = [];
     for (let i = 0; i < taskIndex; i++) {

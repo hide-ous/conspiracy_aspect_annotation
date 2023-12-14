@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { CssVarsProvider } from '@mui/joy/styles';
 import Sheet from '@mui/joy/Sheet';
@@ -176,6 +176,12 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
       answer: '',
     }))
   );
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    console.log(surveyPage, currentOnboardingStep);
+    window.scrollTo(0, 0);
+  }, [currentOnboardingStep]);
 
   const submitOnboardingTask = (survey) => {
     const urlParams = new URLSearchParams(window.location.search);

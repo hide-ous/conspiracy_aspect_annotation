@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -16,6 +16,13 @@ export default function Survey({
   setAnswers,
   questions,
 }) {
+  const containerRef = useRef();
+
+  // Scroll to top when survey page changes
+  useEffect(() => {
+    containerRef.current.scrollTo(0, 0);
+  }, [page]);
+
   const likertScaleQuestions = questions.slice(0, 10).map((question) => ({
     question: question.question,
     options: question.options,
@@ -37,6 +44,7 @@ export default function Survey({
 
   return (
     <Box
+      ref={containerRef}
       sx={{
         display: 'flex',
         flexDirection: 'column',
