@@ -2,7 +2,7 @@
 defaults:
   - /mephisto/blueprint: static_react_task
   - /mephisto/architect: local
-  - /mephisto/provider: prolific
+  - /mephisto/provider: mock
 mephisto:
   blueprint:
     task_source: ${task_dir}/webapp/build/bundle.js
@@ -19,16 +19,3 @@ mephisto:
     task_tags: 'test,simple,button'
     # We expect to be able to handle 300 concurrent tasks without issue
     max_num_concurrent_units: 300
-  provider:
-    prolific_external_study_url: 'http://doesntmatter.ddns.net/?participant_id={{%PROLIFIC_PID%}}&study_id={{%STUDY_ID%}}&submission_id={{%SESSION_ID%}}'
-    prolific_id_option: 'url_parameters'
-    prolific_workspace_name: 'prospection lab'
-    prolific_project_name: 'test'
-    prolific_estimated_completion_time_in_minutes: 15
-    # prolific_allow_list_group_name: 'Allow list'
-    # prolific_block_list_group_name: 'Block list'
-    # prolific_eligibility_requirements:
-    #   - name: 'CustomWhitelistEligibilityRequirement'
-    #     white_list:
-
-    #       - 658009104d87876ec6800314
