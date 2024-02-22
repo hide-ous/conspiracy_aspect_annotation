@@ -10,7 +10,7 @@ services:
       - ./:/app
     working_dir: /app
     restart: always
-    command: bash -c "mephisto register prolific api_key=321 && python run_task.py mephisto.blueprint.link_task_source=true +HYDRA_FULL_ERROR=1"
+    command: bash -c "python run_task.py mephisto.blueprint.link_task_source=true +HYDRA_FULL_ERROR=1"
 
   mongo:
     container_name: mongodb

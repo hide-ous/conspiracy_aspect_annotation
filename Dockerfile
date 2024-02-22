@@ -34,3 +34,5 @@ RUN cd /mephisto && pip install -e .
 RUN mephisto check # Run mephisto check so a mock requester gets created
 CMD mephisto check
 RUN pip install "pymongo[srv]"
+WORKDIR /mephisto/app
+RUN mephisto register prolific name=prolific api_key="OUR_API_KEY"
