@@ -10,7 +10,8 @@ def export_jsonl(db, task_name, out_fpath):
         units = data_browser.get_units_for_task_name(task_name)
         units.reverse()
         for unit in units:
-            out_fhandle.write(json.dumps(unit)+'\n')
+            data = data_browser.get_data_from_unit(unit)
+            f.write(json.dumps(data)+'\n')
     print(f'results written to {out_fpath}')
 
     
