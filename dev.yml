@@ -4,15 +4,13 @@ services:
   crowdwork:
     container_name: crowdwork
     build: ./
-    env_file:
-      - .env
     ports:
-      - '3000:3000'
+      - '3052:3000'
     volumes:
       - ./:/app
     working_dir: /app
     restart: always
-    command: bash -c "python run_task.py conf=config_prolific mephisto.blueprint.link_task_source=true +HYDRA_FULL_ERROR=1"
+    command: python run_task.py mephisto.blueprint.link_task_source=true +HYDRA_FULL_ERROR=1
 
   mongo:
     container_name: mongodb

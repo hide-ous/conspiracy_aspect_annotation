@@ -13,7 +13,9 @@ RUN apt update
 RUN apt install keychain -y
 RUN apt install git -y
 
-RUN git clone https://github.com/facebookresearch/Mephisto.git /mephisto
+RUN git clone https://github.com/facebookresearch/Mephisto.git /mephisto && \
+    cd /mephisto && \
+    git checkout 2387d11908ab0897df298921a6d64f16f33d31de
 
 #COPY . /mephisto
 RUN mkdir ~/.mephisto
@@ -35,4 +37,4 @@ RUN mephisto check # Run mephisto check so a mock requester gets created
 CMD mephisto check
 RUN pip install "pymongo[srv]"
 WORKDIR /mephisto/app
-RUN mephisto register prolific name=prolific api_key="OUR_API_KEY"
+RUN mephisto register prolific name=prolific api_key="$PROLIFIC_API_KEY"

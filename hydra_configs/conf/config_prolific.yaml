@@ -30,4 +30,4 @@ mephisto:
     prolific_eligibility_requirements:
       - name: "CustomWhitelistEligibilityRequirement"
         white_list:
-          - 658009104d87876ec6800314
+          - 658008ede2fa33549f8796a0

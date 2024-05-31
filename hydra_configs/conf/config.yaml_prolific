@@ -1,0 +1,33 @@
+#@package _global_
+defaults:
+  - /mephisto/blueprint: static_react_task
+  - /mephisto/architect: local
+  - /mephisto/provider: prolific
+mephisto:
+  blueprint:
+    task_source: ${task_dir}/webapp/build/bundle.js
+    data_csv: ${task_dir}/texts.csv
+    link_task_source: false
+    extra_source_dir: ${task_dir}/webapp/src/static
+    units_per_assignment: 1
+    onboarding_qualification: test-react-static-qualification
+  task:
+    task_name: crowdwork
+    task_title: 'Identifing conspiracy teories TEST 3'
+    task_description: 'A system for crowdwork annotation. The system will enable crowdworkers to 1) classify texts as conspiracy theories and 2) to identify specific narrative components of conspiracy theories in the text (called “aspects”).'
+    task_reward: 10
+    task_tags: 'test,simple,button'
+    # We expect to be able to handle 300 concurrent tasks without issue
+    max_num_concurrent_units: 300
+  provider:
+    prolific_external_study_url: 'http://doesntmatter.ddns.net/?participant_id={{%PROLIFIC_PID%}}&study_id={{%STUDY_ID%}}&submission_id={{%SESSION_ID%}}'
+    prolific_id_option: 'url_parameters'
+    prolific_workspace_name: 'prospection lab'
+    prolific_project_name: 'test'
+    prolific_estimated_completion_time_in_minutes: 1
+    prolific_allow_list_group_name: 'Allow list'
+    prolific_block_list_group_name: 'Block list'
+    prolific_eligibility_requirements:
+      - name: 'CustomWhitelistEligibilityRequirement'
+        white_list:
+          - 658009104d87876ec6800314
