@@ -9,7 +9,7 @@ mephisto:
     data_csv: ${task_dir}/texts.csv
     link_task_source: false
     extra_source_dir: ${task_dir}/webapp/src/static
-    units_per_assignment: 1
+    units_per_assignment: 10
     onboarding_qualification: test-react-static-qualification
   log_level: 'debug'
   task:
@@ -18,7 +18,7 @@ mephisto:
     task_description: 'A system for crowdwork annotation. The system will enable crowdworkers to 1) classify texts as conspiracy theories and 2) to identify specific narrative components of conspiracy theories in the text (called aspects).'
     task_reward: 30
     task_tags: 'test,simple,button'
-    max_num_concurrent_units: 1
+    max_num_concurrent_units: 10
   provider:
     prolific_external_study_url: 'https://crowdwork.devmaxup.com/?participant_id={{%PROLIFIC_PID%}}&study_id={{%STUDY_ID%}}&submission_id={{%SESSION_ID%}}'
     prolific_id_option: 'url_parameters'
@@ -33,3 +33,4 @@ mephisto:
           - 658008ede2fa33549f8796a0
           - 658009104d87876ec6800314
           - 6580087140a25fafd8a9bdcf
+          - 658008ae678be2d216a86929
