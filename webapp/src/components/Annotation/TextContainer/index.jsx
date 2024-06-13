@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
@@ -70,66 +70,80 @@ export default function TextContainer({
     }, 200);
   }, [text, highlights, setLines]);
 
-  const createHighlight = (index) => {
-    const getIndex = (range, isEnd) => {
-      const element = isEnd
-        ? range.endContainer.parentElement
-        : range.startContainer.parentElement;
+  const createHighlight = useCallback(
+    (index) => {
+      if (readonly) {
+        return;
+      }
 
-      const isSpace = element.textContent === '\u00a0';
+      const getIndex = (range, isEnd) => {
+        const element = isEnd
+          ? range.endContainer.parentElement
+          : range.startContainer.parentElement;
 
-      const correction = isEnd ? 0 : 1;
+        const isSpace = element.textContent === '\u00a0';
 
-      const index = isSpace
-        ? +element.dataset.index + correction
-        : +element.dataset.index;
+        const correction = isEnd ? 0 : 1;
 
-      return [index, isSpace];
+        const index = isSpace
+          ? +element.dataset.index + correction
+          : +element.dataset.index;
+
+        return [index, isSpace];
+      };
+
+      const selection = window.getSelection();
+
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+
+        const [startIndex, isStartSpace] = getIndex(range, false);
+        let [endIndex, isEndSpace] = getIndex(range, true);
+
+        if (!endIndex) {
+          endIndex = index;
+        }
+
+        if (isStartSpace && isEndSpace) {
+          return;
+        }
+
+        window.getSelection().removeAllRanges();
+
+        const isHighlightAlreadyExists = highlights.some(
+          (highlight) =>
+            highlight.start === startIndex &&
+            highlight.end === endIndex &&
+            highlight.aspect.title === currentAspect.title
+        );
+
+        if (isHighlightAlreadyExists) {
+          return;
+        }
+
+        setHighlights((prevState) => [
+          ...prevState,
+          {
+            id: Math.random(),
+            start: startIndex,
+            end: endIndex,
+            aspect: currentAspect,
+            createdAt: new Date(),
+          },
+        ]);
+      }
+    },
+    [highlights, currentAspect, setHighlights]
+  );
+
+  // Add mouse up event listener to body so that we can create a highlight even if user releases the mouse button outside the text container
+  useEffect(() => {
+    document.body.addEventListener('mouseup', createHighlight);
+
+    return () => {
+      document.body.removeEventListener('mouseup', createHighlight);
     };
-
-    const selection = window.getSelection();
-
-    if (selection.rangeCount > 0) {
-      const range = selection.getRangeAt(0);
-
-      const [startIndex, isStartSpace] = getIndex(range, false);
-      let [endIndex, isEndSpace] = getIndex(range, true);
-
-      if (!endIndex) {
-        endIndex = index;
-      }
-      /* const endIndex = index;
-      const isEndSpace = false; */
-
-      if (isStartSpace && isEndSpace) {
-        return;
-      }
-
-      window.getSelection().removeAllRanges();
-
-      const isHighlightAlreadyExists = highlights.some(
-        (highlight) =>
-          highlight.start === startIndex &&
-          highlight.end === endIndex &&
-          highlight.aspect.title === currentAspect.title
-      );
-
-      if (isHighlightAlreadyExists) {
-        return;
-      }
-
-      setHighlights((prevState) => [
-        ...prevState,
-        {
-          id: Math.random(),
-          start: startIndex,
-          end: endIndex,
-          aspect: currentAspect,
-          createdAt: new Date(),
-        },
-      ]);
-    }
-  };
+  }, [createHighlight]);
 
   const isFirefox = navigator.userAgent.toLowerCase().includes('firefox');
 

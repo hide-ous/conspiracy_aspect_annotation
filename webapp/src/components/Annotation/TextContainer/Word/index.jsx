@@ -214,11 +214,9 @@ export default function Word({
         data-index={index}
         style={spanStyle}
         className={`word ${isInsideCurrentHighlight ? 'highlighted' : ''}`}
-        onMouseUp={() => {
-          if (readonly) {
-            return;
-          }
-
+        onMouseUp={(event) => {
+          event.stopPropagation();
+          event.nativeEvent.stopImmediatePropagation();
           createHighlight(index);
         }}
       >
