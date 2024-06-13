@@ -38,6 +38,8 @@ def format_data_for_printing(data):
 
     if data["task_end"] is not None and data["task_start"] is not None:
         duration = data["task_end"] - data["task_start"]
+    else:
+        duration = 0
 
     metadata_string = (
         f"Worker: {worker_name}\nUnit: {data['unit_id']}\n"
