@@ -7,6 +7,16 @@ import Radio from '@mui/joy/Radio';
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 
+const getProlificUserId = () => {
+  const urlString = window.location.href;
+
+  const url = new URL(urlString);
+  const params = new URLSearchParams(url.search);
+  const participantId = params.get('participant_id');
+
+  return participantId || 'N/A';
+};
+
 const getSelectedString = (text, startIndex, endIndex) => {
   const textArray = text.split(' ');
   const selectedArray = textArray.slice(startIndex, endIndex + 1);
@@ -117,6 +127,7 @@ export default function Controls({
             }
 
             const result = {
+              prolificUserId: getProlificUserId(),
               isConspiracy,
               isSkipped: false,
               annotations: highlights.map((highlight) => ({
