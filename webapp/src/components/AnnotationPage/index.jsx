@@ -22,7 +22,6 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   } catch (error) {
     // console.log('error', error);
   }
-  console.log('taskdata', taskData);
 
   if (!texts) {
     return null;
@@ -31,6 +30,11 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   useEffect(() => {
     containerRef.current.focus();
   }, []);
+
+  // Reset aspect when changing text
+  useEffect(() => {
+    setCurrentAspect(aspects[0]);
+  }, [currentTextIndex]);
 
   const switchAspectByKey = (key) => {
     const aspect = aspects.find((aspect) => aspect.numButton === +key);
@@ -52,8 +56,6 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
       });
     }
   };
-
-  console.log(results);
 
   return (
     <CssVarsProvider>
