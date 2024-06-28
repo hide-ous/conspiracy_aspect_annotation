@@ -14,6 +14,8 @@ export default function AspectButtonsLst({
   setCurrentAspect,
   setIsHelpModalVisible,
   testTask,
+  currentTextIndex,
+  textCount,
 }) {
   return (
     <Box
@@ -72,6 +74,17 @@ export default function AspectButtonsLst({
             </Button>
           </Tooltip>
         ))}
+      </Box>
+      <Box>
+        <Typography
+          level="body-md"
+          color="white"
+          sx={{
+            marginLeft: 1,
+          }}
+        >
+          Text: {currentTextIndex + 1} / {textCount}
+        </Typography>
       </Box>
       <Tooltip title="Show instructions" arrow variant="solid" placement="top">
         <IconButton

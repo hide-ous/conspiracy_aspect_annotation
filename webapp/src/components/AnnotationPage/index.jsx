@@ -83,6 +83,8 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
           text={texts?.[currentTextIndex]?.body}
           highlights={highlights}
           setHighlights={setHighlights}
+          currentTextIndex={currentTextIndex}
+          textCount={texts.length}
         />
         <Controls
           setHighlights={setHighlights}

@@ -17,6 +17,8 @@ export default function Annotation({
   readonly,
   textContainerClass,
   testTask,
+  currentTextIndex,
+  textCount,
 }) {
   const [currentHighlightId, setCurrentHighlightId] = useState(null);
   const [isHelpModalVisible, setIsHelpModalVisible] = useState(false);
@@ -34,6 +36,8 @@ export default function Annotation({
             currentAspect={currentAspect}
             setCurrentAspect={setCurrentAspect}
             setIsHelpModalVisible={setIsHelpModalVisible}
+            currentTextIndex={currentTextIndex}
+            textCount={textCount}
           />
         )}
         <TextContainer
