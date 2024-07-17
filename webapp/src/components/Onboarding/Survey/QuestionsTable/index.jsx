@@ -5,7 +5,11 @@ import Radio from '@mui/joy/Radio';
 
 export default function QuestionsTable({ questions, answers, setAnswers }) {
   return (
-    <Table>
+    <Table
+      sx={{
+        maxWidth: 900,
+      }}
+    >
       <thead
         style={{
           position: 'sticky',
@@ -15,11 +19,18 @@ export default function QuestionsTable({ questions, answers, setAnswers }) {
         }}
       >
         <tr>
-          <th />
-          {questions[0].options.map((option) => (
+          <th
+            style={{
+              width: 308,
+              whiteSpace: 'unset',
+            }}
+          />
+          {questions[0].options.map((option, index) => (
             <th
               style={{
                 textAlign: 'center',
+                width: index === 0 ? '7vw' : '6vw',
+                whiteSpace: 'unset',
               }}
               key={option.value}
             >
@@ -29,14 +40,20 @@ export default function QuestionsTable({ questions, answers, setAnswers }) {
         </tr>
       </thead>
       <tbody>
-        {questions.map((question) => (
-          <tr key={question.question}>
-            <td>{question.question}</td>
-            {question.options.map((option) => (
+        {questions.map((question, index) => (
+          <tr
+            key={question.question}
+            style={{
+              backgroundColor: index % 2 === 0 ? 'transparent' : '#d9dee3',
+            }}
+          >
+            <td style={{ width: 308 }}>{question.question}</td>
+            {question.options.map((option, index) => (
               <td
                 key={option.value}
                 style={{
                   textAlign: 'center',
+                  width: index === 0 ? '7vw' : '6vw',
                 }}
               >
                 <Radio
