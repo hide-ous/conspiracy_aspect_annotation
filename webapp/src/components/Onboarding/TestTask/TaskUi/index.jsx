@@ -50,12 +50,15 @@ export default function TaskUi({
       </Typography>
       <Box>
         <Annotation
+          noCounter
           testTask
           currentAspect={currentAspect}
           textContainerClass="task"
           text={text}
           highlights={highlights}
           setHighlights={setHighlights}
+          textCount={tasks.length}
+          currentTextIndex={currentTaskIndex}
         />
         <Controls
           testTask

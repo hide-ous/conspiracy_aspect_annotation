@@ -187,6 +187,7 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
     const urlParams = new URLSearchParams(window.location.search);
     const worker_id = urlParams.get('worker_id');
     const assignment_id = urlParams.get('assignment_id');
+    const prolific_user_id = urlParams.get('participant_id');
 
     const getFilteredHighlights = (aspectTitle) => {
       return testTaskHighlights
@@ -209,6 +210,7 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
         answers: survey,
         worker_id,
         assignment_id,
+        prolific_user_id,
       },
     });
   };
