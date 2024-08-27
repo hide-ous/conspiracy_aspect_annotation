@@ -117,7 +117,7 @@ export default function TextContainer({
             highlight.aspect.title === currentAspect.title
         );
 
-        if (isHighlightAlreadyExists) {
+        if (isHighlightAlreadyExists || isNaN(startIndex) || isNaN(endIndex)) {
           return;
         }
 
