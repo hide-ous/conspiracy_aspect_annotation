@@ -202,9 +202,9 @@ export default function OnboardingPage({ initialTaskData, onSubmit }) {
       aspects: {
         Actor: getFilteredHighlights('Actor'),
         Action: getFilteredHighlights('Action'),
-        Pattern: getFilteredHighlights('Pattern'),
-        Threat: getFilteredHighlights('Threat'),
-        Secrecy: getFilteredHighlights('Secrecy'),
+        Effect: getFilteredHighlights('Effect'),
+        Victim: getFilteredHighlights('Victim'),
+        Evidence: getFilteredHighlights('Evidence'),
       },
       survey: {
         answers: survey,

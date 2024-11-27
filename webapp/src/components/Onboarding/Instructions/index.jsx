@@ -13,7 +13,6 @@ import { aspectDescriptions } from '../../../constants/main.js';
 
 const howToAnnotate = [
   // [
-    'Do:',
     'Select as few words as necessary to report each feature',
     'Mark all passages if a feature occurs multiple times or is split in the text',
     'You may annotate the same text passage as different features ',

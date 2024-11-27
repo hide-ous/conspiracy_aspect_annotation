@@ -93,8 +93,8 @@ export default function HelpModal({ isOpen, setIsOpen }) {
               Carefully read the text and consider whether you think it contains
               any of the features below for a conspiracy theory. You will then
               be asked to annotate the following conspiratorial features:{' '}
-              <b>Actor</b>, <b>Action</b>, <b>Threat</b>, <b>Pattern</b>, and{' '}
-              <b>Secrecy</b> by marking them in the text.
+              <b>Actor</b>, <b>Action</b>, <b>Effect</b>, <b>Victim</b>, and{' '}
+              <b>Evidence</b> by marking them in the text.
             </Typography>
             <Typography>
               In some cases, the features may or may not be present, overlap,
