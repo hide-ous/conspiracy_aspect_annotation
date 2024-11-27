@@ -23,6 +23,10 @@ RUN mkdir ~/.mephisto
 # Create the main Mephisto data directory
 RUN mkdir /mephisto/data
 
+#RUN mkdir ~/.aws
+#COPY ./aws/credentials ~/.aws/credentials
+#COPY ./aws/config ~/.aws/config
+
 # Write the mephisto config file manually for now to avoid prompt.
 # For bash-style string $ expansion for newlines,
 # we need to switch the shell to bash:

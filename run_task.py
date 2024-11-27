@@ -86,9 +86,9 @@ def main(operator: Operator, cfg: DictConfig) -> None:
         "text": "You better fight your government, and you better fight now. This is a full blown attempt to disarm and control you. They are taking down the internet, now they are taking your way to defend yourself and your families. If you don't fight now your children are as good as dead. Fucking dead. Stand up. We are with you here in the USA.",
         "Actor": [{"id": 1, "start": 4, "end": 4}],
         "Action": [{"id": 2, "start": 17, "end": 20}],
-        "Pattern": [{"id": 3, "start": 10, "end": 20}],
-        "Threat": [{"id": 4, "start": 23, "end": 26}],
-        "Secrecy": [{"id": 5, "start": 30, "end": 38}],
+        "Effect": [{"id": 3, "start": 10, "end": 20}],
+        "Victim": [{"id": 4, "start": 23, "end": 26}],
+        "Evidence": [{"id": 5, "start": 30, "end": 38}],
     },   validate_onboarding=handle_onboarding,)
 
     if is_using_screening_units:

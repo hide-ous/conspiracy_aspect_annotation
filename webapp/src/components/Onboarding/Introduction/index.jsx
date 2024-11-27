@@ -35,8 +35,8 @@ export default function Introduction({ onConsent }) {
       </Typography>
       <Typography marginBottom={2}>
         The first time you take this task, we give detailed explanations of the
-        task and guide you through example annotations, which will both be
-        excluded when you revisit the task in the future
+        task and guide you through example annotations. You will not need to go
+        through either again the next time you take the task.
       </Typography>
       <Typography marginBottom={2}>
         All information you provide will be stored anonymously and you can

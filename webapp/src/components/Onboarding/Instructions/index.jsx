@@ -12,21 +12,17 @@ import renderList from '../../../helpers/renderList.js';
 import { aspectDescriptions } from '../../../constants/main.js';
 
 const howToAnnotate = [
-  [
-    'Dos',
-    'Select the concrete words that signal the presence of the feature',
-    'Select as little text as necessary',
-    'If a feature is split across multiple passages or occurs multiple times, mark each part individually',
-    'You may annotate the same text passage as indicative of different features',
-    'You may annotate a feature even when it is implicit or approximate (e.g., “they” as a reference to actors in the conspiracy)',
-    'You may annotate features even when they are hypothetical, fictitious, or abstract (e.g., “Mickey Mouse”, “Alien”)',
-    'You may rely on common knowledge when determining whether text refers to a feature, (e.g., crop circles as symbols of alien presence or black helicopter as symbols of military takeover)',
-  ],
-  [
-    'Dont’s',
-    'Do not mark references to previously marked features; for example, if one specific actor of the conspiracy is mentioned three times, only mark the first occurrence',
-    'Do not follow links',
-  ],
+  // [
+    'Do:',
+    'Select as few words as necessary to report each feature',
+    'Mark all passages if a feature occurs multiple times or is split in the text',
+    'You may annotate the same text passage as different features ',
+  // ],
+  // [
+  //   'Dont’s',
+  //   'Do not mark references to previously marked features; for example, if one specific actor of the conspiracy is mentioned three times, only mark the first occurrence',
+  //   'Do not follow links',
+  // ],
 ];
 
 export default function Instructions({ onContinue, modal, hideModal }) {
@@ -46,7 +42,7 @@ export default function Instructions({ onContinue, modal, hideModal }) {
       </Typography>
       <Typography marginBottom={2}>
         You will have to annotate the following features: <b>Actor</b>,{' '}
-        <b>Action</b>, <b>Threat</b>, <b>Pattern</b>, and <b>Secrecy</b>.
+        <b>Action</b>, <b>Effect</b>, <b>Victim</b>, and <b>Evidence</b>.
       </Typography>
       <Typography marginBottom={2}>
         You will also be asked if you think the entire text you read is a
