@@ -13,9 +13,9 @@ RUN apt update
 RUN apt install keychain -y
 RUN apt install git -y
 
-RUN git clone https://github.com/facebookresearch/Mephisto.git /mephisto && \
+RUN git clone https://github.com/hide-ous/Mephisto.git /mephisto && \
     cd /mephisto && \
-    git checkout 2387d11908ab0897df298921a6d64f16f33d31de
+    git checkout fe79a96112bc897a0c22626a9d6d9fbd5366fc7c
 
 #COPY . /mephisto
 RUN mkdir ~/.mephisto
