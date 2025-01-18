@@ -85,7 +85,6 @@ export default function AspectExample({ aspect = 'Actor' }) {
         }}
       >
         <Box ref={containerRef}>
-          <Typography mb={2}>{exampleAspects[aspect]?.description}</Typography>
           <Box
             sx={{
               display: 'flex',
@@ -101,6 +100,7 @@ export default function AspectExample({ aspect = 'Actor' }) {
               text={exampleAspects[aspect]?.text || '123'}
             />
           </Box>
+            <Typography mb={2}>{exampleAspects[aspect]?.description}</Typography>
           <Typography level="h5">More details:</Typography>
           {exampleAspects[aspect]?.detailsList &&
             renderList(exampleAspects[aspect]?.detailsList)}

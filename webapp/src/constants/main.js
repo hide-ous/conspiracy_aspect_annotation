@@ -49,13 +49,12 @@ export const exampleAspects = {
     ),
     text: `SS: Just a reminder that various extremist groups that are out there, trying to recruit people, are actually CIA and other Alphabet agency Honeypots. In this case, the BBC is even admitting this guy is CIA but says he's only "former" CIA (yea right) and also they are making sure to create a link to Russia so they can continue with the narrative that anyone who isn't on the left is a Russian controlled Nazi, lol.`,
     detailsList: [
-      'Actors are the characters framed as being responsible for the malicious plans or negative consequences in the narrative. ',
-      'Actors may be individuals, but also a powerful group, an institution, etc. (e.g., governmental agencies, international organizations). ',
-      'The actor may be the main characters in the narrative, but also those who collaborate with them and contribute to the execution of their goals ',
-      '(e.g., facilitators who help the main characters, intermediaries who help hide their actions, etc.).',
-      'An actor answers the question: “who are the main actors being alleged with wrongdoing?”',
+      'Actors are responsible for the malicious plans or negative consequences in the narrative. ',
+      'They may be individuals, a powerful group, or an institution. ',
+      'An actor may also collaborate or contribute to the execution of conspiratorial goals (e.g., facilitators who help the main characters). ',
+      'An actor passage answers the question: “who are the main actors being alleged with wrongdoing?”',
       [
-        <span>Actors can also be personified, (in)animate beings, or abstract entities. For example, both “communists” and “communism” can be considered actors.</span>,
+        <span>Actors can also be personified, (in)animate beings, or abstract entities. E.g., both “communists” and “communism” can be actors.</span>,
         [<span>In case of multiple actors:</span>,
           <span>
             Mark all involved actors who are responsible for the outlined
@@ -109,9 +108,10 @@ export const exampleAspects = {
     ),
     text: 'SS: New report alleges Hillary Clinton oversaw a multi-billion dollar fraud/theft, and high-ranking FBI agents are now coming forward with more details about it.',
     detailsList: [
-      'Actions are all operations that actors concretely perform to pursue their agenda, or the plans that they develop to the same end.',
-      'Actions include manipulating information about the conspiracy, such as by distorting and hiding it.',
-      'An action answers the question: “Which actions do the actors undertake (or intend to undertake) to accomplish their goals?”',
+      'Actions are performed by actors to pursue their agenda.',
+      'An action can also represent plans, intentions, motivations, or goals',
+      'Actions include manipulating information about the conspiracy (e.g., distorting or hiding information).',
+      'An action passage answers the question: “Which actions do the actors undertake (or intend to undertake) to accomplish their goals?”',
           [
         <span>
           An <strong>action</strong> can be direct and indirect (e.g., exertions
@@ -128,10 +128,6 @@ export const exampleAspects = {
           white, male, or straight”
         </span>,
       ],
-      <span>
-        An <strong>action</strong> can also represent plans, intentions,
-        motivations, or goals
-      </span>,
     ],
     highlights: [
       {
@@ -157,7 +153,8 @@ export const exampleAspects = {
     ),
     text: "SS: I bet $100 there's some juicy stuff in there that some people don't want to ever see the light of day. According to the Daily Telegraph, Maxwell maintained a secret email server and failed to secure it. Maxwell claims that her email server was hacked after a court unsealed approximately 2,000 pages of documents last August, according to the Daily Mail. The extent of the breach is unknown. If emails were obtained in the hack they could showcase embarrassing information on Epstein's clients, alleged victims, and co-conspirators in his massive sex trafficking operation.",
     detailsList: [
-      'An effect answers the question: “What are the negative consequences of the actor\'s agenda?”',
+        'The effects of a conspiracy can be past events (e.g., criminal activities, harm caused) or possible future negative outcomes  or threats.',
+      'An effect passage answers the question: “What are the negative consequences of the actor\'s agenda?”',
       [
         <span>
           Sometimes it is difficult to differentiate between Action and{' '}
@@ -201,8 +198,9 @@ export const exampleAspects = {
     ),
     text: 'SS: Rudy drops radical bombs on Fox and Friends implicating the highest levels of government, the ambassadors, and intelligence agencies. He makes names and has recorded testimony from individuals banned from the United States to keep it quiet. The hosts get nervous that such things are being revealed on their show live. ',
     detailsList: [
-      'The victims may be the explicit target of the conspiracy or implied such as people who may be unintentionally harmed in the pursuit of the actors\' agenda. The effect on victims may have already happened, be projected in as happening the future, or remain in the realm of possibilities.',
-      'Victim answers the question: “Who suffers the negative effects of the conspiracy?”',
+      'The victims may be the explicit target of the conspiracy or implied or may be unintentionally harmed in the actors’ agenda.',
+        'The effect on victims may have already happened or may still happen.',
+      'Victim passages answer the question: “Who suffers the negative effects of the conspiracy?”',
     ],
     highlights: [
       { id: 1, start: 28, end: 33, aspect: aspects[3] },
@@ -223,16 +221,20 @@ export const exampleAspects = {
     ),
     text: 'SS: Just a reminder that various extremist groups that are out there, trying to recruit people, are actually CIA and other Alphabet agency Honeypots. In this case, the BBC is even admitting this guy is CIA but says he\'s only "former" CIA (yea right) and also they are making sure to create a link to Russia so they can continue with the narrative that anyone who isn\'t on the left is a Russian controlled Nazi, lol. Nice try Feds!',
     detailsList: [
-      'Evidence is often against mainstream beliefs (according to the text author), may not be obvious, but should still support the text author\'s interpretation. ',
+        'Evidence may be based on facts, assumptions, suspicions or on statements presented as evidence, such as: ',
+        ['Documented evidence: factual sources, leaked documents, public court trials',
+        'Indirect inferences: recurring patterns, coincidences that are too suspicious, reference to similar events',
+          'Unsubstantiated suspicions: personal hunches that suggest plausibility, speculations there is more than meets the eye that supports the overall argument'],
+      'Evidence is often against mainstream beliefs and may not be obvious, but should still support the text author’s interpretation. ',
       "Evidence may express: “there is more to this than meets the eye” or “someone must be behind it”",
-      'In contrast, pattern is surprising to the speaker.',
-      'Evidence answers the question: “How does the writer of the text argue that the conspiracy exists?”',
+      'Evidence passages answer the question: “How does the writer of the text argue that the conspiracy exists?”',
       ['Evidence examples:',
         'Coincidences and unlikely events that are thought to originate from someone\'s action (nothing is a coincidence);',
-        'Alleged characteristics of the actors that make the conspiracy more likely;',
+        'Non-obvious connections between events and people. E.g. “Doesn’t it seem suspicious that they all resigned at the same time?”;',
+          'Alleged characteristics of the actors that make the conspiracy more likely',
         'Expressions of skepticism and rebuttal of established knowledge;',
         'Non-obvious connections between events and people (everything is connected/connect the dots) e.g. “Doesn\'t it seem suspicious that they all resigned at the same time?”;',
-        'Recurring events that make the conspiracy more likely to exist, by the virtue of being repeated or connecting with established theories. E.g., “there are cases of things like this all over the country”',
+        'Recurring events that make the conspiracy more likely to exist. E.g., “there are cases of things like this all over the country”'
       ]
 ],
     highlights: [
@@ -245,10 +247,8 @@ export const exampleAspects = {
     ],
     controlQuestionsList: [
       'How is the author of the text expressing that there is something more going on?',
-      'How does the author express that the presented facts cannot be coincidences?',
       'Why does the text author think it is worth sharing this story?',
       'How does the author refute mainstream knowledge?',
-      'How does the text author present surprising or not obvious knowledge to the reader?',
       'How does the author of the text establish links, present evidence, and highlight inconsistencies that support the existence of the conspiracy?',
     ],
     collapseAnimationDuration: 450,
