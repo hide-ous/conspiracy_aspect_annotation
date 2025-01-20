@@ -14,6 +14,7 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   const [highlights, setHighlights] = useState([]);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [results, setResults] = useState([]);
+  const [showDebriefing, setShowDebriefing] = useState(false); // New state
 
   const containerRef = useRef();
   let texts;
@@ -51,48 +52,96 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
       ]);
       setCurrentTextIndex(currentTextIndex + 1);
     } else {
-      handleSubmit({
-        results: [...results, { text: texts[currentTextIndex].body, result }],
-      });
+      // Show debriefing before submitting
+      setResults((prevResults) => [
+        ...prevResults,
+        { text: texts[currentTextIndex].body, result },
+      ]);
+      setShowDebriefing(true);
     }
   };
 
+  const handleFinalSubmit = () => {
+    handleSubmit({ results });
+  };
+
+  if (showDebriefing) {
+    return (
+        <CssVarsProvider>
+          <Sheet
+              className="DebriefingPage"
+              variant="soft"
+              sx={{
+                height: '100%',
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '5vh',
+              }}
+          >
+            <h1>Debriefing</h1>
+            <p>
+              Thank you for your annotations. Please click the button to submit them for review and complete your assignment.
+            </p>
+              <p> The next time you take this task, you will not need to fill in the onboarding survey.</p>
+            <p> The texts you annotated were obtained from social media and may include false information and conspiracy theories.</p>
+              <p>The authors of this task do not endorse them.</p>
+              <p> You may take this task multiple times.</p>
+              <p> The next time you take this task, you will not need to fill in the onboarding survey.</p>
+            <button
+                onClick={handleFinalSubmit}
+                style={{
+                  marginTop: '20px',
+                  padding: '10px 20px',
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                }}
+            >
+              Submit Results
+            </button>
+          </Sheet>
+        </CssVarsProvider>
+    );
+  }
+
   return (
-    <CssVarsProvider>
-      <Sheet
-        ref={containerRef}
-        className="AnnotationPage"
-        onKeyDown={(event) => {
-          switchAspectByKey(event.key);
-        }}
-        tabIndex={0}
-        variant="soft"
-        sx={{
-          height: '100%',
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingTop: '5vh',
-          paddingBottom: '5vh',
-        }}
-      >
-        <Annotation
-          currentAspect={currentAspect}
-          setCurrentAspect={setCurrentAspect}
-          text={texts?.[currentTextIndex]?.body}
-          highlights={highlights}
-          setHighlights={setHighlights}
-          currentTextIndex={currentTextIndex}
-          textCount={texts.length}
-        />
-        <Controls
-          setHighlights={setHighlights}
-          highlights={highlights}
-          handleSubmit={saveResultsAndSwitchToNextText}
-          text={texts?.[currentTextIndex]?.body}
-        />
-      </Sheet>
-    </CssVarsProvider>
+      <CssVarsProvider>
+        <Sheet
+            ref={containerRef}
+            className="AnnotationPage"
+            onKeyDown={(event) => {
+              switchAspectByKey(event.key);
+            }}
+            tabIndex={0}
+            variant="soft"
+            sx={{
+              height: '100%',
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              paddingTop: '5vh',
+              paddingBottom: '5vh',
+            }}
+        >
+          <Annotation
+              currentAspect={currentAspect}
+              setCurrentAspect={setCurrentAspect}
+              text={texts?.[currentTextIndex]?.body}
+              highlights={highlights}
+              setHighlights={setHighlights}
+              currentTextIndex={currentTextIndex}
+              textCount={texts.length}
+          />
+          <Controls
+              setHighlights={setHighlights}
+              highlights={highlights}
+              handleSubmit={saveResultsAndSwitchToNextText}
+              text={texts?.[currentTextIndex]?.body}
+          />
+        </Sheet>
+      </CssVarsProvider>
   );
 }
