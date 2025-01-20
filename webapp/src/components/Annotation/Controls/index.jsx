@@ -57,7 +57,8 @@ export default function Controls({
               marginBottom: 1,
             }}
           >
-            Is this a conspiracy?
+              Conspiracy theories are commonly defined as explanatory beliefs about a group of actors that collude in secret to reach malevolent goals.
+              Is this a conspiracy?
           </FormLabel>
           <RadioGroup orientation="horizontal">
             <Radio

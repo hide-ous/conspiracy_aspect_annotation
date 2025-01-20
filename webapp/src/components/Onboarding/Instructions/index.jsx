@@ -36,12 +36,12 @@ export default function Instructions({ onContinue, modal, hideModal }) {
       </Typography>
       <Typography marginBottom={2}>
         Your task is to annotate which text parts correspond to one of five
-        features indicative of conspiracy theories. The features may be clearly
-        stated in the text, only partly present, or fully absent.
+        features indicative of conspiracy theories. Conspiracy theories commonly describe a group of people colludes together in secret to attain evil goals.
       </Typography>
       <Typography marginBottom={2}>
-        You will have to annotate the following features: <b>Actor</b>,{' '}
+        You will have to annotate the following features of conspiracy theories: <b>Actor</b>,{' '}
         <b>Action</b>, <b>Effect</b>, <b>Victim</b>, and <b>Evidence</b>.
+          The features may be clearly stated in the text, only partly present, or fully absent.
       </Typography>
       <Typography marginBottom={2}>
         You will also be asked if you think the entire text you read is a

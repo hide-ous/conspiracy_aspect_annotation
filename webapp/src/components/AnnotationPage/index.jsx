@@ -82,14 +82,11 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
               }}
           >
             <h1>Debriefing</h1>
-            <p>
+            <p style="text-align:center;">
               Thank you for your annotations. Please click the button to submit them for review and complete your assignment.
             </p>
-              <p> The next time you take this task, you will not need to fill in the onboarding survey.</p>
-            <p> The texts you annotated were obtained from social media and may include false information and conspiracy theories.</p>
-              <p>The authors of this task do not endorse them.</p>
-              <p> You may take this task multiple times.</p>
-              <p> The next time you take this task, you will not need to fill in the onboarding survey.</p>
+            <p style="text-align:center;"> The texts you annotated were obtained from social media and may include false information and conspiracy theories. The authors of this task do not endorse them.</p>
+              <p style="text-align:center;"> You may take this task multiple times. The next time you take this task, you will not need to fill in the onboarding survey.</p>
             <button
                 onClick={handleFinalSubmit}
                 style={{
