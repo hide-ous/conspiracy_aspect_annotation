@@ -83,12 +83,12 @@ def handle_onboarding(onboarding_data):
 def main(operator: Operator, cfg: DictConfig) -> None:
     is_using_screening_units = cfg.mephisto.blueprint["use_screening_task"]
     shared_state = SharedStaticTaskState(onboarding_data={
-        "text": "You better fight your government, and you better fight now. This is a full blown attempt to disarm and control you. They are taking down the internet, now they are taking your way to defend yourself and your families. If you don't fight now your children are as good as dead. Fucking dead. Stand up. We are with you here in the USA.",
-        "Actor": [{"id": 1, "start": 4, "end": 4}],
-        "Action": [{"id": 2, "start": 17, "end": 20}],
-        "Effect": [{"id": 3, "start": 10, "end": 20}],
-        "Victim": [{"id": 4, "start": 23, "end": 26}],
-        "Evidence": [{"id": 5, "start": 30, "end": 38}],
+        "text": "Mark Sextons statement 18 Jan 2023. The MP's, Sir Graham Brady, and Nadhim Zahawi (vaccine minister) police and IPCO knew in 2021 that the vaccines were harming and killing people. They were given evidence from top experts in the world and they did NOTHING. Mark fully backs the statements of Cardiologist Aseem Malhotra and MP Andrew Bridgen. PLEASE SHARE",
+        "Actor": [{"id": 1, "start": 6, "end": 18}, {"id": 9, "start": 30, "end": 30}],
+        "Action": [{"id": 2, "start": 19, "end": 19}, {"id": 6, "start": 42, "end": 43}],
+        "Effect": [{"id": 3, "start": 26, "end": 28}],
+        "Victim": [{"id": 4, "start": 29, "end": 29}],
+        "Evidence": [{"id": 5, "start": 0, "end": 2}, {"id": 7, "start": 33, "end": 39}, {"id": 8, "start": 47, "end": 56}],
     },   validate_onboarding=handle_onboarding,)
 
     if is_using_screening_units:
