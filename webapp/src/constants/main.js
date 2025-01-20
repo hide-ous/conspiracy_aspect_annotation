@@ -49,9 +49,6 @@ export const exampleAspects = {
     ),
     text: `SS: Just a reminder that various extremist groups that are out there, trying to recruit people, are actually CIA and other Alphabet agency Honeypots. In this case, the BBC is even admitting this guy is CIA but says he's only "former" CIA (yea right) and also they are making sure to create a link to Russia so they can continue with the narrative that anyone who isn't on the left is a Russian controlled Nazi, lol.`,
     detailsList: [
-      'Actors are responsible for the malicious plans or negative consequences in the narrative. ',
-      'They may be individuals, a powerful group, or an institution. ',
-      'An actor may also collaborate or contribute to the execution of conspiratorial goals (e.g., facilitators who help the main characters). ',
       'An actor passage answers the question: “who are the main actors being alleged with wrongdoing?”',
       [
         <span>Actors can also be personified, (in)animate beings, or abstract entities. E.g., both “communists” and “communism” can be actors.</span>,
@@ -108,9 +105,6 @@ export const exampleAspects = {
     ),
     text: 'SS: New report alleges Hillary Clinton oversaw a multi-billion dollar fraud/theft, and high-ranking FBI agents are now coming forward with more details about it.',
     detailsList: [
-      'Actions are performed by actors to pursue their agenda.',
-      'An action can also represent plans, intentions, motivations, or goals',
-      'Actions include manipulating information about the conspiracy (e.g., distorting or hiding information).',
       'An action passage answers the question: “Which actions do the actors undertake (or intend to undertake) to accomplish their goals?”',
           [
         <span>
@@ -153,7 +147,6 @@ export const exampleAspects = {
     ),
     text: "SS: I bet $100 there's some juicy stuff in there that some people don't want to ever see the light of day. According to the Daily Telegraph, Maxwell maintained a secret email server and failed to secure it. Maxwell claims that her email server was hacked after a court unsealed approximately 2,000 pages of documents last August, according to the Daily Mail. The extent of the breach is unknown. If emails were obtained in the hack they could showcase embarrassing information on Epstein's clients, alleged victims, and co-conspirators in his massive sex trafficking operation.",
     detailsList: [
-        'The effects of a conspiracy can be past events (e.g., criminal activities, harm caused) or possible future negative outcomes  or threats.',
       'An effect passage answers the question: “What are the negative consequences of the actor\'s agenda?”',
       [
         <span>
@@ -198,8 +191,6 @@ export const exampleAspects = {
     ),
     text: 'SS: Rudy drops radical bombs on Fox and Friends implicating the highest levels of government, the ambassadors, and intelligence agencies. He makes names and has recorded testimony from individuals banned from the United States to keep it quiet. The hosts get nervous that such things are being revealed on their show live. ',
     detailsList: [
-      'The victims may be the explicit target of the conspiracy or implied or may be unintentionally harmed in the actors’ agenda.',
-        'The effect on victims may have already happened or may still happen.',
       'Victim passages answer the question: “Who suffers the negative effects of the conspiracy?”',
     ],
     highlights: [
@@ -221,12 +212,6 @@ export const exampleAspects = {
     ),
     text: 'SS: Just a reminder that various extremist groups that are out there, trying to recruit people, are actually CIA and other Alphabet agency Honeypots. In this case, the BBC is even admitting this guy is CIA but says he\'s only "former" CIA (yea right) and also they are making sure to create a link to Russia so they can continue with the narrative that anyone who isn\'t on the left is a Russian controlled Nazi, lol. Nice try Feds!',
     detailsList: [
-        'Evidence may be based on facts, assumptions, suspicions or on statements presented as evidence, such as: ',
-        ['Documented evidence: factual sources, leaked documents, public court trials',
-        'Indirect inferences: recurring patterns, coincidences that are too suspicious, reference to similar events',
-          'Unsubstantiated suspicions: personal hunches that suggest plausibility, speculations there is more than meets the eye that supports the overall argument'],
-      'Evidence is often against mainstream beliefs and may not be obvious, but should still support the text author’s interpretation. ',
-      "Evidence may express: “there is more to this than meets the eye” or “someone must be behind it”",
       'Evidence passages answer the question: “How does the writer of the text argue that the conspiracy exists?”',
       ['Evidence examples:',
         'Coincidences and unlikely events that are thought to originate from someone\'s action (nothing is a coincidence);',
@@ -259,46 +244,66 @@ export const aspectDescriptions = [
   {
     title: 'Actor',
     description: (
-      <span>
-        Who are the main actors being alleged with wrongdoing? These are the characters framed as being responsible for the malicious plans or negative consequences in the narrative. Actors may be individuals, but also a powerful group, an institution, etc. (e.g., governmental agencies, international organizations). The actor may be the main characters in the narrative, but also those who collaborate with them and contribute to the execution of their goals (e.g., facilitators who help the main characters, intermediaries who help hide their actions, etc.).
-      </span>
+        <span>
+        Actors are responsible for the malicious plans or negative consequences in the narrative.
+            They may be individuals, a powerful group, or an institution.
+            An actor may also collaborate or contribute to the execution of conspiratorial goals (e.g., facilitators who help the main characters).
+          </span>
     ),
   },
   {
     title: 'Action',
     description: (
-      <span>
-        Actions are all operations that actors concretely perform to pursue their agenda, or the plans that they develop to the same end. Actions include manipulating information about the conspiracy, such as by distorting and hiding it.
-      </span>
+        <span>
+        Actions are performed by actors to pursue their agenda.
+            An action can also represent plans, intentions, motivations, or goals.
+            Actions include manipulating information about the conspiracy (e.g., distorting or hiding information).
+          </span>
     ),
   },
   {
     title: 'Effect',
     description: (
-      <span>
-        The effects of a conspiracy can be events that have already occurred, such as criminal activities or harm caused, but also negative outcomes that are foreseen for the future or threats that may realize.
-      </span>
+        <span>
+        The effects of a conspiracy can be past events (e.g., criminal activities, harm caused) or possible future negative outcomes  or threats.
+          </span>
     ),
   },
   {
     title: 'Victim',
     description: (
-      <span>
-        The victims may be the explicit target of the conspiracy or implied such as people who may be unintentionally harmed in the pursuit of the actors’ agenda. The effect on victims may have already happened, be projected in as happening the future, or remain in the realm of possibilities.
-      </span>
+        <span>
+        The victims may be the explicit target of the conspiracy or implied or may be unintentionally harmed in the actors’ agenda.
+            The effect on victims may have already happened or may still happen.
+          </span>
     ),
   },
   {
     title: 'Evidence',
     description: (
-      <div>
-        Evidence may be based on hard facts to varying degrees (annotate all of them):
-        <ul>
-          <li>Documented evidence: factual sources, leaked documents, public trials, first-hand testimony</li>
-          <li>Indirect inferences: recurring patterns, coincidences that are too suspicious, reference to similar events</li>
-          <li>Unsubstantiated suspicions: personal hunches that suggest plausibility, speculations there is more than meets the eye that supports the overall argument</li>
-        </ul>
-      </div>
+        <div>Evidence may be based on facts, assumptions, suspicions or on statements presented as evidence, such as:
+          <ul>
+            <li>
+              Documented evidence: factual sources, leaked documents, public court trials
+            </li>
+            <li>
+              Indirect inferences: recurring patterns, coincidences that are too suspicious, reference to similar events
+            </li>
+            <li>
+              Unsubstantiated suspicions: personal hunches that suggest plausibility, speculations there is more than meets the eye that supports the overall argument
+            </li>
+          </ul>
+          Evidence is often against mainstream beliefs and may not be obvious, but should still support the text author’s interpretation.
+          Evidence may express: “there is more to this than meets the eye” or “someone must be behind it”
+        </div>
+      // <div>
+      //   Evidence may be based on hard facts to varying degrees (annotate all of them):
+      //   <ul>
+      //     <li>Documented evidence: factual sources, leaked documents, public trials, first-hand testimony</li>
+      //     <li>Indirect inferences: recurring patterns, coincidences that are too suspicious, reference to similar events</li>
+      //     <li>Unsubstantiated suspicions: personal hunches that suggest plausibility, speculations there is more than meets the eye that supports the overall argument</li>
+      //   </ul>
+      // </div>
     ),
   },
 ];
