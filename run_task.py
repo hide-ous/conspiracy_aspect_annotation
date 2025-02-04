@@ -17,6 +17,7 @@ from mephisto.abstractions.blueprints.abstract.static_task.static_blueprint impo
 )
 from rich import print
 from omegaconf import DictConfig
+from export_data import main as edm
 
 db_client = db_connect.get_mongo_client()
 
@@ -84,7 +85,7 @@ def main(operator: Operator, cfg: DictConfig) -> None:
     is_using_screening_units = cfg.mephisto.blueprint["use_screening_task"]
     shared_state = SharedStaticTaskState(onboarding_data={
         "text": "Mark Sextons statement 18 Jan 2023. The MP's, Sir Graham Brady, and Nadhim Zahawi (vaccine minister) police and IPCO knew in 2021 that the vaccines were harming and killing people. They were given evidence from top experts in the world and they did NOTHING. Mark fully backs the statements of Cardiologist Aseem Malhotra and MP Andrew Bridgen. PLEASE SHARE",
-        "Actor": [{"id": 1, "start": 6, "end": 18}, {"id": 9, "start": 30, "end": 30}],
+        "Actor": [{"id": 1, "start": 6, "end": 18}, {"id": 9, "start": 30, "end": 30}, {"id": 10, "start": 41, "end": 41}],
         "Action": [{"id": 2, "start": 19, "end": 19}, {"id": 6, "start": 42, "end": 43}],
         "Effect": [{"id": 3, "start": 26, "end": 28}],
         "Victim": [{"id": 4, "start": 29, "end": 29}],
@@ -115,6 +116,7 @@ def main(operator: Operator, cfg: DictConfig) -> None:
 
     operator.launch_task_run(cfg.mephisto, shared_state)
     operator.wait_for_runs_then_shutdown(skip_input=True, log_rate=30)
+    edm()
 
 
 if __name__ == "__main__":

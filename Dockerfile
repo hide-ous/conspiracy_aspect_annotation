@@ -13,9 +13,10 @@ RUN apt update
 RUN apt install keychain -y
 RUN apt install git -y
 
-RUN git clone https://github.com/facebookresearch/Mephisto.git /mephisto && \
+RUN git clone https://github.com/hide-ous/Mephisto.git /mephisto && \
     cd /mephisto && \
-    git checkout 2387d11908ab0897df298921a6d64f16f33d31de
+    git checkout alt-future
+#    git checkout alt-history
 
 #COPY . /mephisto
 RUN mkdir ~/.mephisto
@@ -36,9 +37,11 @@ RUN echo $'core: \n  main_data_directory: /mephisto/data' >> ~/.mephisto/config.
 # Upgrade pip so we can use the pyproject.toml configuration
 # without raising an error
 RUN pip install --upgrade pip
+RUN pip install pandas
 RUN cd /mephisto && pip install -e .
 RUN mephisto check # Run mephisto check so a mock requester gets created
 CMD mephisto check
 RUN pip install "pymongo[srv]"
 WORKDIR /mephisto/app
-RUN mephisto register prolific name=prolific api_key="$PROLIFIC_API_KEY"
+RUN mephisto register inhouse
+#RUN mephisto register prolific name=prolific api_key="$PROLIFIC_API_KEY"

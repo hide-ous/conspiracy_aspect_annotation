@@ -29,19 +29,19 @@ function MainApp() {
       </section>
     );
   }
-  if (isPreview) {
-    return (
-      <AnnotationPage
-        taskData={{
-          texts: JSON.stringify([
-            {
-              body: "You better fight your government, and you better fight now. This is a full blown attempt to disarm and control you. They are taking down the internet, now they are taking your way to defend yourself and your families. If you don't fight now your children are as good as dead. Fucking dead. Stand up. We are with you here in the USA.",
-            },
-          ]),
-        }}
-      />
-    );
-  }
+  // if (isPreview) {
+  //   return (
+  //     <AnnotationPage
+  //       taskData={{
+  //         texts: JSON.stringify([
+  //           {
+  //             body: "You better fight your government, and you better fight now. This is a full blown attempt to disarm and control you. They are taking down the internet, now they are taking your way to defend yourself and your families. If you don't fight now your children are as good as dead. Fucking dead. Stand up. We are with you here in the USA.",
+  //           },
+  //         ]),
+  //       }}
+  //     />
+  //   );
+  // }
   if (isLoading || !initialTaskData) {
     return <LoadingPage />;
   }

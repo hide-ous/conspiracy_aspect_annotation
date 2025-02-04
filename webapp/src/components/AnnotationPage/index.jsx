@@ -61,8 +61,17 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
     }
   };
 
+  function getProlificStudyId() {
+    let urlParams = new URLSearchParams(window.location.search);
+    const STUDY_URL_STUDY_ID_PARAM = 'study_id';
+    return urlParams.get(STUDY_URL_STUDY_ID_PARAM);
+  }
+
   const handleFinalSubmit = () => {
     handleSubmit({ results });
+    var completionCode = 'COMPLETED_' + getProlificStudyId();
+    window.location.href='https://app.prolific.com/submissions/complete?cc=' + completionCode;
+
   };
 
   if (showDebriefing) {
