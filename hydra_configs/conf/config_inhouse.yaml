@@ -23,4 +23,6 @@ mephisto:
     # We expect to be able to handle 300 concurrent tasks without issue
     max_num_concurrent_units: 300
     force_rebuild: true
-    submission_timeout: 6000
+    submission_timeout: 12000
+    assignment_duration_in_seconds: 12000
+    resume_incomplete_run: true
