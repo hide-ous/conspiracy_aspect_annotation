@@ -73,9 +73,9 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   //   window.location.href='https://app.prolific.com/submissions/complete?cc=' + completionCode;
   //
   // };
-  const handleFinalSubmit = async () => {
+  const handleFinalSubmit = () => {
     try {
-      await handleSubmit({ results }); // Ensure submission completes
+      handleSubmit({ results }); // Ensure submission completes
       const completionCode = 'COMPLETED_' + getProlificStudyId();
       window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;
       } catch (error) {
@@ -101,7 +101,7 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
           >
             <h1>Debriefing</h1>
             <p style={{textAlign: 'center'}}>
-              Thank you for your annotations. Please click the button to submit them for review and complete your assignment.
+              Thank you for your annotations. Please click the button to submit them for review and complete your assignment. It may take a few seconds before your results are properly saved.
             </p>
             <p style={{textAlign: 'center'}}> The texts you annotated were obtained from social media and may include false information and conspiracy theories. The authors of this task do not endorse them.</p>
               <p style={{textAlign: 'center'}}> You may take this task multiple times. The next time you take this task, you will not need to fill in the onboarding survey.</p>
