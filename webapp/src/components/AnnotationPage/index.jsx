@@ -67,11 +67,20 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
     return urlParams.get(STUDY_URL_STUDY_ID_PARAM);
   }
 
-  const handleFinalSubmit = () => {
-    handleSubmit({ results });
-    var completionCode = 'COMPLETED_' + getProlificStudyId();
-    window.location.href='https://app.prolific.com/submissions/complete?cc=' + completionCode;
-
+  // const handleFinalSubmit = () => {
+  //   handleSubmit({ results });
+  //   var completionCode = 'COMPLETED_' + getProlificStudyId();
+  //   window.location.href='https://app.prolific.com/submissions/complete?cc=' + completionCode;
+  //
+  // };
+  const handleFinalSubmit = async () => {
+    try {
+      await handleSubmit({ results }); // Ensure submission completes
+      const completionCode = 'COMPLETED_' + getProlificStudyId();
+      window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;
+      } catch (error) {
+        console.error('Submission failed:', error);
+      }
   };
 
   if (showDebriefing) {

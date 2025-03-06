@@ -25,4 +25,3 @@ mephisto:
     force_rebuild: true
     submission_timeout: 12000
     assignment_duration_in_seconds: 12000
-    resume_incomplete_run: true
