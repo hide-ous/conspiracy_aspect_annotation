@@ -58,12 +58,18 @@ export default function AnnotationPage({ taskData, handleSubmit,setRedirectUrl  
         ...prevResults,
         { text: texts[currentTextIndex].body, result },
       ]);
-      setShowDebriefing(true);
-      // try {
-      //   handleSubmit({ results }); // Ensure submission completes
-      // } catch (error) {
-      //   console.error('Submission failed:', error);
-      // }
+      try {console.log('handling submit');
+          console.log({results});
+        handleSubmit({ results }); // Ensure submission completes
+          console.log('SUBMITTED');
+      } catch (error) {
+          console.log('not SUBMITTED');
+          console.error('Submission failed:', error);
+      } finally {
+          const completionCode = 'COMPLETED_' + getProlificStudyId();
+          setRedirectUrl('https://app.prolific.com/submissions/complete?cc=' + completionCode); // Change this URL
+      }
+        setShowDebriefing(true);
     }
   };
 
@@ -80,11 +86,11 @@ export default function AnnotationPage({ taskData, handleSubmit,setRedirectUrl  
   //
   // };
   const handleFinalSubmit = () => {
-    console.log('handling submit');
-    console.log({results})
+    // console.log('handling submit');
+    // console.log({results});
     try {
-      handleSubmit({ results }); // Ensure submission completes
-      console.log('SUBMITTED');
+      // handleSubmit({ results }); // Ensure submission completes
+      // console.log('SUBMITTED');
       const completionCode = 'COMPLETED_' + getProlificStudyId();
       setRedirectUrl('https://app.prolific.com/submissions/complete?cc=' + completionCode); // Change this URL
       // window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;

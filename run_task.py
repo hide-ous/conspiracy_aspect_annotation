@@ -105,13 +105,13 @@ def main(operator: Operator, cfg: DictConfig) -> None:
         shared_state.qualifications += ScreenTaskRequired.get_mixin_qualifications(
             cfg.mephisto, shared_state
         )
-#     old_fun = shared_state.on_unit_submitted
-#     def new_shared_state_on_unit_submitted(args):
-#         print(args)
-#         print(args.__dict__)
-#         return old_fun(args)
+    old_fun = shared_state.on_unit_submitted
+    def new_shared_state_on_unit_submitted(args):
+        print(args)
+        print(args.__dict__)
+        return old_fun(args)
 
-#     shared_state.on_unit_submitted = new_shared_state_on_unit_submitted
+    shared_state.on_unit_submitted = new_shared_state_on_unit_submitted
     task_dir = cfg.task_dir
 
     build_custom_bundle(
