@@ -9,7 +9,7 @@ import Controls from '../Annotation/Controls/index.jsx';
 import { aspects } from '../../constants/main';
 import './styles.css';
 
-export default function AnnotationPage({ taskData, handleSubmit }) {
+export default function AnnotationPage({ taskData, handleSubmit,setRedirectUrl  }) {
   const [currentAspect, setCurrentAspect] = useState(aspects[0]);
   const [highlights, setHighlights] = useState([]);
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -45,6 +45,7 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   };
 
   const saveResultsAndSwitchToNextText = (result) => {
+    console.log({results})
     if (currentTextIndex < texts.length - 1) {
       setResults((prevResults) => [
         ...prevResults,
@@ -58,11 +59,11 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
         { text: texts[currentTextIndex].body, result },
       ]);
       setShowDebriefing(true);
-      try {
-        handleSubmit({ results }); // Ensure submission completes
-      } catch (error) {
-        console.error('Submission failed:', error);
-      }
+      // try {
+      //   handleSubmit({ results }); // Ensure submission completes
+      // } catch (error) {
+      //   console.error('Submission failed:', error);
+      // }
     }
   };
 
@@ -79,10 +80,14 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
   //
   // };
   const handleFinalSubmit = () => {
+    console.log('handling submit');
+    console.log({results})
     try {
-      // handleSubmit({ results }); // Ensure submission completes
+      handleSubmit({ results }); // Ensure submission completes
+      console.log('SUBMITTED');
       const completionCode = 'COMPLETED_' + getProlificStudyId();
-      window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;
+      setRedirectUrl('https://app.prolific.com/submissions/complete?cc=' + completionCode); // Change this URL
+      // window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;
       } catch (error) {
         console.error('Submission failed:', error);
       }
@@ -106,10 +111,11 @@ export default function AnnotationPage({ taskData, handleSubmit }) {
           >
             <h1>Debriefing</h1>
             <p style={{textAlign: 'center'}}>
-              Thank you for your annotations. Please click the button to submit them for review and complete your assignment. It may take a few seconds before your results are properly saved.
+              Please click the button to submit your work for review and complete your assignment. It may take a few seconds before your results are properly saved.
             </p>
             <p style={{textAlign: 'center'}}> The texts you annotated were obtained from social media and may include false information and conspiracy theories. The authors of this task do not endorse them.</p>
               <p style={{textAlign: 'center'}}> You may take this task multiple times. The next time you take this task, you will not need to fill in the onboarding survey.</p>
+              <p style={{textAlign: 'center'}}> Thank you for your work!</p>
             <button
                 onClick={handleFinalSubmit}
                 style={{

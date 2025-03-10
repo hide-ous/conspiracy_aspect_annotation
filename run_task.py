@@ -51,7 +51,7 @@ def validate_aspect_test(input, output):
                 outputh_highlight["start"] == input_highlight["start"] - 1) and 
                 (input_highlight["end"] or outputh_highlight["end"] == 
                 input_highlight["end"] + 1)):
-                is_correct_answer_exists = True;
+                is_correct_answer_exists = True
         if (is_correct_answer_exists == False):
             return False
     
@@ -105,7 +105,13 @@ def main(operator: Operator, cfg: DictConfig) -> None:
         shared_state.qualifications += ScreenTaskRequired.get_mixin_qualifications(
             cfg.mephisto, shared_state
         )
+#     old_fun = shared_state.on_unit_submitted
+#     def new_shared_state_on_unit_submitted(args):
+#         print(args)
+#         print(args.__dict__)
+#         return old_fun(args)
 
+#     shared_state.on_unit_submitted = new_shared_state_on_unit_submitted
     task_dir = cfg.task_dir
 
     build_custom_bundle(

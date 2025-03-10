@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 
 import { useMephistoTask, ErrorBoundary } from 'mephisto-task';
@@ -19,7 +19,13 @@ function MainApp() {
     handleFatalError,
     isOnboarding,
   } = useMephistoTask();
+  const [redirectUrl, setRedirectUrl] = useState(null); // New state
 
+  useEffect(() => {
+    if (redirectUrl) {
+      window.location.href = redirectUrl; // Redirects to external site
+    }
+  }, [redirectUrl]);
   if (blockedReason !== null) {
     return (
       <section className="hero is-medium is-danger">
@@ -60,6 +66,7 @@ function MainApp() {
         <AnnotationPage
           taskData={initialTaskData}
           handleSubmit={handleSubmit}
+          setRedirectUrl={setRedirectUrl} // Pass the function to AnnotationPage
         />
       </ErrorBoundary>
     </div>
