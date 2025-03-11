@@ -13,9 +13,8 @@ RUN apt update
 RUN apt install keychain -y
 RUN apt install git -y
 
-RUN git clone https://github.com/hide-ous/Mephisto.git /mephisto && \
-    cd /mephisto && \
-    git checkout alt-future
+RUN git clone https://github.com/facebookresearch/Mephisto.git /mephisto && \
+    cd /mephisto
 #    git checkout alt-history
 
 #COPY . /mephisto
