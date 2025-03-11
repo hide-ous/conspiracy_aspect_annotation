@@ -91,7 +91,9 @@ export default function AnnotationPage({ taskData, handleSubmit,setRedirectUrl  
     try {
       // handleSubmit({ results }); // Ensure submission completes
       // console.log('SUBMITTED');
-      const completionCode = 'COMPLETED_' + getProlificStudyId();
+      const completionCode = 'COMPLETED_67cbbf1ea4b9029e3c86bb4d';
+
+      // const completionCode = 'COMPLETED_' + getProlificStudyId();
       setRedirectUrl('https://app.prolific.com/submissions/complete?cc=' + completionCode); // Change this URL
       // window.location.href = 'https://app.prolific.com/submissions/complete?cc=' + completionCode;
       } catch (error) {
