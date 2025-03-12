@@ -14,6 +14,7 @@ results_collection = results_db['results']
 
 @app.route("/submit", methods=["POST"])
 def receive_json():
+    print('receiving')
     try:
         data = request.json
         if not data:
