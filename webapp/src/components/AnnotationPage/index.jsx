@@ -44,36 +44,58 @@ export default function AnnotationPage({ taskData, handleSubmit,setRedirectUrl  
     }
   };
 
-  const saveResultsAndSwitchToNextText = (result) => {
-    console.log({results})
-    if (currentTextIndex < texts.length - 1) {
-      setResults((prevResults) => [
-        ...prevResults,
-        { text: texts[currentTextIndex].body, result },
-      ]);
-      setCurrentTextIndex(currentTextIndex + 1);
-    } else {
-      // Show debriefing before submitting
-      setResults((prevResults) => [
-        ...prevResults,
-        { text: texts[currentTextIndex].body, result },
-      ]);
-      try {console.log('handling submit');
-          console.log({results});
-        handleSubmit({ results }); // Ensure submission completes
-          console.log('SUBMITTED');
-      } catch (error) {
-          console.log('not SUBMITTED');
-          console.error('Submission failed:', error);
-      } finally {
-          const completionCode = 'COMPLETED_' + getProlificStudyId();
-          setRedirectUrl('https://app.prolific.com/submissions/complete?cc=' + completionCode); // Change this URL
-      }
-        setShowDebriefing(true);
-    }
-  };
+    const saveResultsAndSwitchToNextText = (result) => {
+        console.log({ results });
 
-  function getProlificStudyId() {
+        // Get URL parameters
+        const urlParams = Object.fromEntries(new URLSearchParams(window.location.search));
+
+        if (currentTextIndex < texts.length - 1) {
+            setResults((prevResults) => [
+                ...prevResults,
+                { text: texts[currentTextIndex].body, result },
+            ]);
+            setCurrentTextIndex(currentTextIndex + 1);
+        } else {
+            // Show debriefing before submitting
+            setResults((prevResults) => [
+                ...prevResults,
+                { text: texts[currentTextIndex].body, result },
+            ]);
+
+            const finalResults = { results, params: urlParams };
+
+            console.log("handling submit", finalResults);
+
+            // Send data to JSON server using .then() instead of async/await
+            fetch("http://mephisto-elb-816505541.eu-central-1.elb.amazonaws.com:8008/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(finalResults),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("JSON Server Response:", data);
+                })
+                .catch((error) => {
+                    console.log("not SUBMITTED");
+                    console.error("Submission failed:", error);
+                })
+                .finally(() => {
+                    handleSubmit(finalResults); // Ensure submission completes
+                    console.log("SUBMITTED");
+                    const completionCode = "COMPLETED_67cbbf1ea4b9029e3c86bb4d";
+                    setRedirectUrl(
+                        "https://app.prolific.com/submissions/complete?cc=" + completionCode
+                    );
+                });
+
+            setShowDebriefing(true);
+        }
+    };
+
+
+    function getProlificStudyId() {
     let urlParams = new URLSearchParams(window.location.search);
     const STUDY_URL_STUDY_ID_PARAM = 'study_id';
     return urlParams.get(STUDY_URL_STUDY_ID_PARAM);

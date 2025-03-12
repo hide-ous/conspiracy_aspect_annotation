@@ -20,3 +20,13 @@ services:
     volumes:
       - ./db:/data/db
     restart: always
+
+  json_server:
+    build: ./json_server
+    ports:
+      - "8008:8008"
+    depends_on:
+      - mongo
+      - crowdwork
+    environment:
+      - FLASK_ENV=development
