@@ -1,0 +1,50 @@
+version: '3.6'
+
+services:
+  crowdwork:
+    container_name: crowdwork
+    build: ./
+    # No public ports exposed here; Nginx will proxy to its internal port
+    # Ensure your application inside this container listens on port 3000
+    # If your Python app inside `crowdwork` needs to connect to `json_server`,
+    # it should use `http://json_server:8008`
+    # If it needs to connect to `mongo`, it should use `mongodb:27017`
+    volumes:
+      - ./:/app
+    working_dir: /app
+    restart: no
+    command: bash -c "python run_task.py conf=config_inhouse mephisto.blueprint.link_task_source=true +HYDRA_FULL_ERROR=1"
+    networks:
+      - app_network # Assign to our custom network
+
+  mongo:
+    container_name: mongodb
+    image: mongo
+    # Expose to host machine's localhost only (not publicly)
+    # This allows you to connect from your server's shell, but not from the internet.
+    ports:
+      - '127.0.0.1:27018:27017' # Host:27018 -> Container:27017
+    volumes:
+      - ./db:/data/db
+    restart: always
+    networks:
+      - app_network # Assign to our custom network
+
+  json_server:
+    build: ./json_server
+    # No public ports exposed here; it's assumed to be an internal service
+    # for crowdwork, or accessed only from the host if needed.
+    # Ensure your application inside this container listens on port 8008
+    depends_on:
+      - mongo
+      - crowdwork # If crowdwork needs to be up for json_server to function
+    environment:
+      - FLASK_ENV=development
+      # If json_server needs to connect to mongo, ensure it uses `mongodb:27017`
+    networks:
+      - app_network # Assign to our custom network
+
+# Define the custom network
+networks:
+  app_network:
+    driver: bridge
